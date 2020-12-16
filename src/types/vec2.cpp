@@ -1,9 +1,10 @@
 
-#include "types.h"
+#include "types/vec2.h"
 
 // Vec2 ///////////////////////////////////////////////////
 
 Vec2::Vec2(float x, float y) :_data(x, y) { }
+Vec2::Vec2(const ImVec2& imvec) : _data(imvec) {}
 
 void Vec2::_Vec2(ptr<Object> _self, float x, float y) {
 	Vec2* vec2 = ptrcast<Vec2>(_self).get();
@@ -42,33 +43,39 @@ Vec2::operator ImVec2& () {
 	return _data;
 }
 
-// Color ///////////////////////////////////////////////////
+// Vec2i ///////////////////////////////////////////////////
 
-Color::Color(float r, float g, float b, float a) : _data(r, g, b, a) {}
+Vec2i::Vec2i(int x, int y) { _data[0] = x, _data[1] = y; }
+Vec2i::Vec2i(int v[2]) { _data[0] = v[0], _data[1] = v[1]; }
 
-void Color::_Color(ptr<Object> _self, float r, float g, float b, float a) {
-	Color* color = ptrcast<Color>(_self).get();
-	color->_data = ImColor(r, g, b, a);
+void Vec2i::_Vec2i(ptr<Object> _self, int x, int y) {
+	Vec2i* vec2 = ptrcast<Vec2i>(_self).get();
+	vec2->_data[0] = x;
+	vec2->_data[1] = y;
 }
 
-var Color::get_member(const String& p_name) {
+var Vec2i::get_member(const String& p_name) {
 	switch (p_name.const_hash()) {
-		case "r"_hash: return _data.Value.x;
-		case "g"_hash: return _data.Value.y;
-		case "b"_hash: return _data.Value.z;
-		case "a"_hash: return _data.Value.w;
+		case "x"_hash:
+		case "w"_hash: return _data[0];
+		case "y"_hash:
+		case "h"_hash: return _data[1];
 	}
 	return Super::get_member(p_name);
 }
 
-void Color::set_member(const String& p_name, var& value) {
+void Vec2i::set_member(const String& p_name, var& value) {
 	switch (p_name.const_hash()) {
-		case "r"_hash: _data.Value.x = value; return;
-		case "g"_hash: _data.Value.y = value; return;
-		case "b"_hash: _data.Value.z = value; return;
-		case "a"_hash: _data.Value.w = value; return;
+		case "x"_hash:
+		case "w"_hash:
+			_data[0] = value; return;
+		case "y"_hash:
+		case "h"_hash:
+			_data[1] = value; return;
 	}
 	Super::set_member(p_name, value);
 }
 
-void* Color::get_data() { return (float*)&_data.Value; }
+void* Vec2i::get_data() {
+	return (void*)_data;
+}

@@ -21,6 +21,10 @@ bool ui::ColorEdit3(const String& label, var& color) {
 bool ui::InputText(const String& label, String& buff) {
 	return ImGui::InputText(label.c_str(), &buff.operator std::string & ());
 }
+
+ptr<Vec2> ui::GetMousePos() {
+	return newptr<Vec2>(ImGui::GetMousePos());
+}
 // ------------------------------------------------------------------------------------------------------
 
 bool ui::Begin(const String& title, var& open, int window_flags) {
@@ -37,5 +41,13 @@ void ui::End() {
 
 
 void ui::SetNextWindowPos(const var& pos, int cond, const var& pivot) {
-	ImGui::SetNextWindowPos(pos.cast_to<Vec2>()->operator ImVec2 &(), cond, pivot.cast_to<Vec2>()->operator ImVec2 &());
+	ImGui::SetNextWindowPos(*pos.cast_to<Vec2>(), cond, *pivot.cast_to<Vec2>());
+}
+
+void ui::SetNextWindowSize(const var& size, ImGuiCond cond) {
+	ImGui::SetNextWindowSize(*size.cast_to<Vec2>(), cond);
+}
+
+void ui::SetNextWindowContentSize(const var& size) {
+	ImGui::SetNextWindowContentSize(*size.cast_to<Vec2>());
 }

@@ -3,6 +3,7 @@
 thirdparty/carbon/
 
 # own files
+imgui.ini
 *.gen.h
 *.gen.inc
 *.dblite
@@ -12,6 +13,7 @@ x64/
 release/
 debug/
 __pycache__/
+*/__pycache__/
 .vs/
 .vscode/
 *.sln
