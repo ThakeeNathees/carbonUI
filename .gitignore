@@ -4,6 +4,7 @@ thirdparty/carbon/
 
 # own files
 imgui.ini
+gen/_intermediate.txt
 *.gen.h
 *.gen.inc
 *.dblite

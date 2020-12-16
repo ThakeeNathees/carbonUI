@@ -1,70 +1,87 @@
 
 ## TODO: restructure this into key value to map for generating
 
-REPLACE = [ ## replace order is important
+from collections import OrderedDict
 
-	## flags
-	('ImGuiCol', '$flag_ImGuiCol$'),
-	('ImGuiCond', '$flag_ImGuiCond$'),
-	('ImGuiDataType', '$flag_ImGuiDataType$'),
-	('ImGuiDir', '$flag_ImGuiDir$'),
-	('ImGuiKey', '$flag_ImGuiKey$'),
-	('ImGuiNavInput', '$flag_ImGuiNavInput$'),
-	('ImGuiMouseButton', '$flag_ImGuiMouseButton$'),
-	('ImGuiMouseCursor', '$flag_ImGuiMouseCursor$'),
-	('ImGuiStyleVar', '$flag_ImGuiStyleVar$'),
-	('ImDrawCornerFlags', '$flag_ImDrawCornerFlags$'),
-	('ImDrawListFlags', '$flag_ImDrawListFlags$'),
-	('ImFontAtlasFlags', '$flag_ImFontAtlasFlags$'),
-	('ImGuiBackendFlags', '$flag_ImGuiBackendFlags$'),
-	('ImGuiColorEditFlags', '$flag_ImGuiColorEditFlags$'),
-	('ImGuiConfigFlags', '$flag_ImGuiConfigFlags$'),
-	('ImGuiComboFlags', '$flag_ImGuiComboFlags$'),
-	('ImGuiDockNodeFlags', '$flag_ImGuiDockNodeFlags$'),
-	('ImGuiDragDropFlags', '$flag_ImGuiDragDropFlags$'),
-	('ImGuiFocusedFlags', '$flag_ImGuiFocusedFlags$'),
-	('ImGuiHoveredFlags', '$flag_ImGuiHoveredFlags$'),
-	('ImGuiInputTextFlags', '$flag_ImGuiInputTextFlags$'),
-	('ImGuiKeyModFlags', '$flag_ImGuiKeyModFlags$'),
-	('ImGuiSelectableFlags', '$flag_ImGuiSelectableFlags$'),
-	('ImGuiTabBarFlags', '$flag_ImGuiTabBarFlags$'),
-	('ImGuiTabItemFlags', '$flag_ImGuiTabItemFlags$'),
-	('ImGuiTreeNodeFlags', '$flag_ImGuiTreeNodeFlags$'),
-	('ImGuiViewportFlags', '$flag_ImGuiViewportFlags$'),
-	('ImGuiWindowFlags', '$flag_ImGuiWindowFlags$'),
+SYMBOLS = OrderedDict()
+	
+## flags
+## KEY : [IMGUI_SUMBOL]
+SYMBOLS['$flag_XXXXXXXXorEditFlags$'  ] = ['ImGuiColorEditFlags'] ## <- this should be above ImGuiCol flag
+SYMBOLS['$flag_ImGuiCol$'             ] = ['ImGuiCol']
+SYMBOLS['$flag_ImGuiCond$'            ] = ['ImGuiCond']
+SYMBOLS['$flag_ImGuiDataType$'        ] = ['ImGuiDataType']
+SYMBOLS['$flag_ImGuiDir$'             ] = ['ImGuiDir']
+SYMBOLS['$flag_ImGuiKey$'             ] = ['ImGuiKey']
+SYMBOLS['$flag_ImGuiNavInput$'        ] = ['ImGuiNavInput']
+SYMBOLS['$flag_ImGuiMouseButton$'     ] = ['ImGuiMouseButton']
+SYMBOLS['$flag_ImGuiMouseCursor$'     ] = ['ImGuiMouseCursor']
+SYMBOLS['$flag_ImGuiStyleVar$'        ] = ['ImGuiStyleVar']
+SYMBOLS['$flag_ImDrawCornerFlags$'    ] = ['ImDrawCornerFlags']
+SYMBOLS['$flag_ImDrawListFlags$'      ] = ['ImDrawListFlags']
+SYMBOLS['$flag_ImFontAtlasFlags$'     ] = ['ImFontAtlasFlags']
+SYMBOLS['$flag_ImGuiBackendFlags$'    ] = ['ImGuiBackendFlags']
+SYMBOLS['$flag_ImGuiConfigFlags$'     ] = ['ImGuiConfigFlags']
+SYMBOLS['$flag_ImGuiComboFlags$'      ] = ['ImGuiComboFlags']
+SYMBOLS['$flag_ImGuiDockNodeFlags$'   ] = ['ImGuiDockNodeFlags']
+SYMBOLS['$flag_ImGuiDragDropFlags$'   ] = ['ImGuiDragDropFlags']
+SYMBOLS['$flag_ImGuiFocusedFlags$'    ] = ['ImGuiFocusedFlags']
+SYMBOLS['$flag_ImGuiHoveredFlags$'    ] = ['ImGuiHoveredFlags']
+SYMBOLS['$flag_ImGuiInputTextFlags$'  ] = ['ImGuiInputTextFlags']
+SYMBOLS['$flag_ImGuiKeyModFlags$'     ] = ['ImGuiKeyModFlags']
+SYMBOLS['$flag_ImGuiSelectableFlags$' ] = ['ImGuiSelectableFlags']
+SYMBOLS['$flag_ImGuiTabBarFlags$'     ] = ['ImGuiTabBarFlags']
+SYMBOLS['$flag_ImGuiTabItemFlags$'    ] = ['ImGuiTabItemFlags']
+SYMBOLS['$flag_ImGuiTreeNodeFlags$'   ] = ['ImGuiTreeNodeFlags']
+SYMBOLS['$flag_ImGuiViewportFlags$'   ] = ['ImGuiViewportFlags']
+SYMBOLS['$flag_ImGuiWindowFlags$'     ] = ['ImGuiWindowFlags']
 
-	## other
-	('IMGUI_API', ''),
-	('ImGuiID', '$im_id$'),
+## other
+SYMBOLS[''                            ] = ['IMGUI_API']
+SYMBOLS['$im_id$'                     ] = ['ImGuiID']
 
-	## default values
-	('ImVec2(0,0)', '$vec2_0$'),
-	('ImVec2(0, 0)', '$vec2_0$'),
-	('ImVec2(1,1)', '$vec2_1$'),
-	('ImVec2(1, 1)', '$vec2_1$'),
-	('ImVec2(-1,0)', '$vec2_-1,0$'),
-	('ImVec4(0,0,0,0)', '$vec4_0$'),
-	('ImVec4(1,1,1,1)', '$vec4_1$'),
+## -------------------------------------------------------------------------
 
-	## types
-	('const char*', '$const_char*$'),
-	('float col[3]', '$float_col3$ col'),
-	('float col[4]', '$float_col4$ col'),
+## default values
+## KEY                    = [IMGUI_SUMBOL      ,  VAR_VERSION             ]
+SYMBOLS['$vec2_0$'      ] = ['ImVec2(0,0)'     ,  'newptr<Vec2>(0,0)'     ]
+SYMBOLS['$vec2_0_$'     ] = ['ImVec2(0, 0)'    ,  'newptr<Vec2>(0,0)'     ]
+SYMBOLS['$vec2_1$'      ] = ['ImVec2(1,1)'     ,  'newptr<Vec2>(1,1)'     ]
+SYMBOLS['$vec2_1_$'     ] = ['ImVec2(1, 1)'    ,  'newptr<Vec2>(1,1)'     ]
+SYMBOLS['$vec2_-10$'    ] = ['ImVec2(-1,0)'    ,  'newptr<Vec2>(-1,0)'    ]
+SYMBOLS['$vec4_0$'      ] = ['ImVec4(0,0,0,0)' ,  'newptr<Vec4>(0,0,0,0)' ]
+SYMBOLS['$vec4_1$'      ] = ['ImVec4(1,1,1,1)' ,  'newptr<Vec4>(1,1,1,1)' ]
 
-	('float v[2]', '$float_v2$ v'),
-	('float v[3]', '$float_v3$ v'),
-	('float v[4]', '$float_v4$ v'),
+## types
+# KEY                      = [IMGUI_SYMBOL,         VAR_VERSION,          PARAM_CAST_TO_IMGUI                                         ]
+SYMBOLS['$const_cXXX*$'  ] = ['const char* const', 'const String&',       lambda param : f'{param}.c_str()'              ]
+SYMBOLS['$const_cXXX*_$' ] = ['const char*',       'const String&',       lambda param : f'{param}.c_str()'              ]
+SYMBOLS['$bXXl*$'        ] = ['bool*',             'var&/*bool*/',        lambda param : f'&({param}.operator bool&())'  ]
+SYMBOLS['$iXt*$'         ] = ['int*',              'var&/*int*/',         lambda param : f'&({param}.operator int&())'   ]
+SYMBOLS['$const_flXXt*$' ] = ['const float*',      'var&/*float*/',       lambda param : f'&({param}.operator float&())' ]
+SYMBOLS['$flXXt*$'       ] = ['float*',            'var&/*float*/',       lambda param : f'&({param}.operator float&())' ]
 
-	('int v[2]', '$int_v2$ v'),
-	('int v[3]', '$int_v3$ v'),
-	('int v[4]', '$int_v4$ v'),
+## casting to color is for better error message
+SYMBOLS['$col@float_col3$ col' ] = ['float col[3]', 'var&/*Color*/',      lambda param : f'(float*){param}.cast_to<Color>()->get_data()'   ]
+SYMBOLS['$col@float_col4$ col' ] = ['float col[4]', 'var&/*Color*/',      lambda param : f'(float*){param}.cast_to<Color>()->get_data()'   ]
 
-	('const ImVec2&', '$const_vec2&$'),
-	('ImVec2&', '$vec2&$'),
-	('ImVec2', '$vec2$'),
+## need to add the v@ by the user
+SYMBOLS['$v@float_v2$ v' ] = ['float v[2]',       'var&/*Vec2*/',         lambda param : f'(float*){param}.get_data()'  ]
+SYMBOLS['$v@float_v3$ v' ] = ['float v[3]',       'var&/*Vec3*/',         lambda param : f'(float*){param}.get_data()'  ]
+SYMBOLS['$v@float_v4$ v' ] = ['float v[4]',       'var&/*Vec4*/',         lambda param : f'(float*){param}.get_data()'  ]
 
-	('const ImVec4&', '$const_vec4&$'),
-	('ImVec4&', '$vec4&$'),
-	('ImVec4', '$vec4$'),
-]
+SYMBOLS['$v@int_v2$ v'   ] = ['int v[2]',         'var&/*Vec2i*/',        lambda param : f'(int*){param}.get_data()'    ]
+SYMBOLS['$v@int_v3$ v'   ] = ['int v[3]',         'var&/*Vec3i*/',        lambda param : f'(int*){param}.get_data()'    ]
+SYMBOLS['$v@int_v4$ v'   ] = ['int v[4]',         'var&/*Vec4i*/',        lambda param : f'(int*){param}.get_data()'    ]
+
+SYMBOLS['$const_vec2&$'  ] = ['const ImVec2&',     'var&/*Vec2*/',        lambda param : f'*{param}.cast_to<Vec2>()'    ]
+SYMBOLS['$const_vec2*$'  ] = ['const ImVec2*',     'var&/*Vec2*/',        lambda param : f'&{param}.cast_to<Vec2>()->operator ImVec2&()'    ]
+SYMBOLS['$vec2&$'        ] = ['ImVec2&',           'var&/*Vec2*/',        lambda param : f'*{param}.cast_to<Vec2>()'    ]
+SYMBOLS['$vec2$'         ] = ['ImVec2',            'var/*Vec2*/',         lambda param : f'*{param}.cast_to<Vec2>()'    ]
+
+SYMBOLS['$const_vec4&$'  ] = ['const ImVec4&',     'var&/*Vec4*/',        lambda param : f'*{param}.cast_to<Vec4>()'     ]
+SYMBOLS['$const_vec4*$'  ] = ['const ImVec4*',     'var&/*Vec4*/',        lambda param : f'&*{param}.cast_to<Vec4>()->operator ImVec4&()'     ]
+SYMBOLS['$vec4&$'        ] = ['ImVec4&',           'var&/*Vec4*/',        lambda param : f'*{param}.cast_to<Vec4>()'     ]
+SYMBOLS['$vec4$'         ] = ['ImVec4',            'var/*Vec4*/',         lambda param : f'*{param}.cast_to<Vec4>()'     ]
+
 
