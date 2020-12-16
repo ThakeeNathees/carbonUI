@@ -2,9 +2,12 @@
 # place carbon "include/" and "bin/" here
 thirdparty/carbon/
 
+gen/_intermediate.txt
+gen/ui.gen.cpp
+gen/ui.gen.h
+
 # own files
 imgui.ini
-gen/_intermediate.txt
 *.gen.h
 *.gen.inc
 *.dblite

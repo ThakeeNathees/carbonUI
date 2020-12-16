@@ -2,7 +2,7 @@
 import decl_parser
 from symbols import SYMBOLS
 
-BIND_CLASS = 'ui'
+BIND_CLASS = 'ui2'
 WRITE_TO_HEADER = 'ui.gen.h'
 WRITE_TO_CPP = 'ui.gen.cpp'
 BIND_TEMPLATE = '''\
@@ -35,6 +35,18 @@ def main():
 	generate_header()
 	generate_cpp()
 
+def should_skip(decl):
+	## TODO: implement wrappers for the return type first
+	if '*' in decl.ret_mapped or '&' in decl.ret_mapped:
+		return True
+
+	## TODO: implement wrappers
+	for param in decl.params:
+		for illegal in ['*', 'ImTextureID']:
+			if illegal in param.dtype:
+				return True
+	pass
+
 def generate_header():
 	## decl : list of [Comment] and [Decl]
 	global DECLS
@@ -49,15 +61,18 @@ def generate_header():
 			continue
 
 		## map ret
-		ret_key = decl.ret.strip()
+		decl.ret = decl.ret.strip()
+		ret_key = decl.ret
 		if ret_key[0] == '$':
-			if ret_key == '$im_id$'            : ret_key = SYMBOLS[ret_key][0]
-			elif ret_key.startswith('$flag_')  : ret_key = SYMBOLS[ret_key][0]
+			if ret_key.startswith('$flag_')  : ret_key = SYMBOLS[ret_key][0]
 			elif ret_key.startswith('$v@')     : ret_key = SYMBOLS[ret_key+' v'][1]
 			elif ret_key.startswith('$col@')   : ret_key = SYMBOLS[ret_key+' col'][1]
 			else                               : ret_key = SYMBOLS[ret_key][1]
 		decl.ret_mapped = ret_key
 		#print(decl.func)
+
+		if (should_skip(decl)):
+			continue
 
 		bind_str = f'\t\tBIND_STATIC_FUNC("{decl.func}", &{BIND_CLASS}::{decl.func}'
 		decl_str = f'\tstatic {ret_key} {decl.func.strip()}('
@@ -74,8 +89,7 @@ def generate_header():
 			param_key = decl.params[i].dtype
 			if param_key[0] == '$':
 				#print(param_key)
-				if param_key == '$im_id$'           : param_key = SYMBOLS[param_key][0]
-				elif param_key.startswith('$flag_') : param_key = SYMBOLS[param_key][0]
+				if param_key.startswith('$flag_') : param_key = SYMBOLS[param_key][0]
 				elif param_key.startswith('$v@')    : param_key = SYMBOLS[param_key+' v'][1]
 				elif param_key.startswith('$col@')  : param_key = SYMBOLS[param_key+' col'][1]
 				else                                : param_key = SYMBOLS[param_key][1]
@@ -124,6 +138,12 @@ def generate_cpp():
 			## skip [Comment]
 			continue
 
+		if should_skip(decl) :
+			continue
+
+		ret_mapped = decl.ret_mapped
+		if ret_mapped.startswith('var&'):
+			ret_mapped = 'var' + ret_mapped[4:]
 		impl_str = f'{decl.ret_mapped} {BIND_CLASS}::{decl.func}('
 		for i in range(len(decl.params)):
 			if (i != 0):
@@ -131,25 +151,31 @@ def generate_cpp():
 				
 			impl_str += f'{decl.params[i].dtype_mapped} {decl.params[i].name}'
 
-			if i == len(decl.params) - 1:
-				impl_str += ')'
+			#if i == len(decl.params) - 1:
+			#	impl_str += ')'
 		
 		impl_str += ') {\n'
 
-		#if decl.ret_mapped  == 'void':
-		impl_str +=  f'\treturn ImGui::{decl.func}('
+		if decl.ret_mapped  != 'void':
+			impl_str += '\treturn '
+		ret_stmn =  f'ImGui::{decl.func.rstrip("_")}(' ## TODO: overloaded ends with '_'
 		for i in range(len(decl.params)):
-			if i != 0: impl_str += ', '
+			if i != 0: ret_stmn += ', '
 			param_key = decl.params[i].dtype
 			param_arg = decl.params[i].name
 			if param_key[0] == '$':
-				if param_key == '$im_id$'           : pass
-				elif param_key.startswith('$flag_') : pass
+				if param_key.startswith('$flag_') : pass
 				elif param_key.startswith('$v@')    : param_arg = SYMBOLS[param_key+' v'][2](param_arg)
 				elif param_key.startswith('$col@')  : param_arg = SYMBOLS[param_key+' col'][2](param_arg)
 				else                                : param_arg = SYMBOLS[param_key][2](param_arg)
-			impl_str += f'{param_arg}'
-		impl_str += ');\n}'
+			ret_stmn += f'{param_arg}'
+		ret_stmn += ')'
+
+		if decl.ret in SYMBOLS.keys() and SYMBOLS[decl.ret].__len__() >= 4:
+			ret_stmn = SYMBOLS[decl.ret.strip()][3](ret_stmn)
+
+		impl_str += '\t' + ret_stmn + ';'
+		impl_str += '\n}'
 
 		implementation += impl_str + '\n\n'
 

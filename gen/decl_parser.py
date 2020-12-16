@@ -3,7 +3,7 @@ import re
 
 import symbols
 
-PATTERN_DECLARATION = '''(?P<ret>.*?)\ (?P<func>[a-zA-Z_][a-zA-Z_\d]*)\((?P<params>.*[,\)])?;'''
+PATTERN_DECLARATION = '''(?P<ret>.*?)\ (?P<func>[a-zA-Z_][a-zA-Z_\d]*)\((?P<params>.*[,\)])?\s*;'''
 REPLACE = symbols.SYMBOLS
 
 class Comment:
@@ -55,10 +55,12 @@ def parse():
 
 				## SIKPING : skip func(...) and func(va_list) <-- can't bind those
 				## FIXME: refactor this
-				if ('IM_FMTARGS' in line or 'IM_FMTLIST' in line
+				if ('IM_FMTLIST' in line
+						#or 'IM_FMTARGS' in line
 						or '(*' in line ## function pointers
 						or 'items[],' in line ## TODO: string array
 						or 'void*' in line or 'void *' in line
+						or 'GetStyleColorVec4(' in line ## return type is reference -> not compatable
 					):
 					SKIPPED.append(line.strip())
 					continue
@@ -67,14 +69,17 @@ def parse():
 	## replace
 	for i in range(len(SOURCE)):
 		if type(SOURCE[i]) == Comment: continue
-		for key in REPLACE:
-			SOURCE[i] = SOURCE[i].replace(REPLACE[key][0], key)
 
-	
+		for key in REPLACE:
+			if key == '$@CLEAN@$':
+				for to_clean in REPLACE[key]:
+					SOURCE[i] = SOURCE[i].replace(to_clean, '')
+			else:
+				SOURCE[i] = SOURCE[i].replace(REPLACE[key][0], key)
+
 	data = [] ## list of [Decl] and [Comment]
 	
 	function_names = []
-
 	for i in range(len(SOURCE)):
 
 		## add and skip comment
@@ -106,6 +111,7 @@ def parse():
 
 			## FIXME: can't bind > 6 params
 			if len(decl.params) > 6:
+				print(decl.func)
 				SKIPPED.append(str(decl))
 				continue
 

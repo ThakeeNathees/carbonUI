@@ -31,7 +31,7 @@ bool ui::Begin(const String& title, var& open, int window_flags) {
 	static bool _open = true; static bool* _popen = &_open;
 	if (open.get_type() != var::_NULL) _open = open.operator bool(), _popen = &_open;
 	else _popen = NULL;
-	bool ret = ImGui::Begin(title.c_str(), &(open.operator bool&()), (ImGuiWindowFlags)window_flags);
+	bool ret = ImGui::Begin(title.c_str(), _popen, (ImGuiWindowFlags)window_flags);
 	if (open.get_type() == var::BOOL) open = _open;
 	return ret;
 }
