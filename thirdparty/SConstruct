@@ -7,6 +7,9 @@ SConscript('glad/SConstruct')
 SConscript('glfw/SConstruct')
 SConscript('ImGui/SConstruct')
 
+## glfw dependencies
+env.Append(LIBS=['X11'])
+
 ## TODO: compile from source (live above)
 env.Append(LIBS=['carbon'])
 env.Append(LIBPATH=[Dir('./carbon/bin/')])

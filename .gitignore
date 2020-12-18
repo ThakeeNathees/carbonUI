@@ -1,6 +1,7 @@
 
 # place carbon "include/" and "bin/" here
 thirdparty/carbon/
+imgui.ini
 
 # generated files
 gen/parsed.txt
