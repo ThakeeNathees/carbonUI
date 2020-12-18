@@ -1,9 +1,12 @@
 #!python
 import os, subprocess, sys
+from gen.gen import generate
 
 ###### USER DATA #############################################################################
 def USER_DATA(env):
 	env.PROJECT_NAME = "CarbonUI"
+
+	generate('gen/source.txt', 'include/ui.gen.h', 'src/ui.gen.cpp')
 
 	env.SCONSCRIPTS = [
 		'thirdparty/SConstruct',

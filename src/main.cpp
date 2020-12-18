@@ -12,6 +12,7 @@ int mainloop(int argc, char** argv) {
 
 	ptr<Bytecode> bytecode;
 	CarbonFunction* fn;
+
 	stdvec<var*> args;
 	try {
 		bytecode = Compiler::singleton()->compile("bin/main.cb");

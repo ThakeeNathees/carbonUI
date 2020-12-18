@@ -7,9 +7,7 @@
 #include "types/vec2.h"
 #include "types/vec3.h"
 #include "types/vec4.h"
-#include "ui.h"
-
-#include "../gen/ui.gen.h"
+#include "ui.gen.h"
 
 inline void register_cbimgui() {
 	NativeClasses::singleton()->register_class<Vec2>();
@@ -21,5 +19,4 @@ inline void register_cbimgui() {
 	NativeClasses::singleton()->register_class<Color>();
 
 	NativeClasses::singleton()->register_class<ui>();
-	NativeClasses::singleton()->register_class<ui2>();
 }

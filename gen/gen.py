@@ -1,10 +1,17 @@
 
-import decl_parser
-from symbols import SYMBOLS
+try:
+	from . import decl_parser
+	from .symbols import SYMBOLS
+except ImportError:
+	import decl_parser
+	from symbols import SYMBOLS
 
-BIND_CLASS = 'ui2'
+
+SOURCE_PATH = 'source.txt'
 WRITE_TO_HEADER = 'ui.gen.h'
 WRITE_TO_CPP = 'ui.gen.cpp'
+BIND_CLASS = 'ui'
+
 BIND_TEMPLATE = '''\
 #pragma once
 
@@ -31,7 +38,16 @@ CPP_TEMPLATE = '''\
 '''
 DECLS = None
 
+import os
+def generate(source = SOURCE_PATH, header = WRITE_TO_HEADER, cpp = WRITE_TO_CPP):
+	global SOURCE_PATH, WRITE_TO_HEADER, WRITE_TO_CPP
+	SOURCE_PATH = source
+	WRITE_TO_HEADER = header
+	WRITE_TO_CPP = cpp
+	main()
+
 def main():
+
 	generate_header()
 	generate_cpp()
 
@@ -42,7 +58,9 @@ def should_skip(decl):
 
 	## TODO: implement wrappers
 	for param in decl.params:
-		for illegal in ['*', 'ImTextureID']:
+		for illegal in [
+			'ImTextureID', 'ImGuiWindowClass', 'ImGuiViewport', 'ImGuiStorage', 'ImFont',
+		]:
 			if illegal in param.dtype:
 				return True
 	pass
@@ -50,7 +68,7 @@ def should_skip(decl):
 def generate_header():
 	## decl : list of [Comment] and [Decl]
 	global DECLS
-	DECLS = decl_parser.parse();
+	DECLS = decl_parser.parse(SOURCE_PATH);
 
 	bindings_str = '\n' ## string of bindings
 	decls_str = '\n'    ## string of declarations
@@ -189,5 +207,9 @@ def write(text, to):
 	with open(to, 'w') as file:
 		file.write(text)
 
+
+import sys
 if __name__ == '__main__':
+	generate(*sys.argv)
+
 	main()

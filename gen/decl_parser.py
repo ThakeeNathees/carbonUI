@@ -1,10 +1,14 @@
 
-import re
+import re, os
 
-import symbols
+try:
+	from . import symbols
+except ImportError:
+	import symbols
 
 PATTERN_DECLARATION = '''(?P<ret>.*?)\ (?P<func>[a-zA-Z_][a-zA-Z_\d]*)\((?P<params>.*[,\)])?\s*;'''
 REPLACE = symbols.SYMBOLS
+_PARSE_RESULT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'parsed.txt')
 
 class Comment:
 	def __init__(self, comment):
@@ -33,12 +37,12 @@ class Param:
 	def __str__(self):
 		return f'`{self.dtype}` `{self.name}` = `{self.default}`'
 
-def parse():
+def parse(source_path = 'source.txt'):
 
 	SKIPPED = []
 	
 	SOURCE = [] ## list of lines(str) and [Comment] for grouping
-	with open('source.txt', 'r') as file:
+	with open(source_path, 'r') as file:
 		group_comment = ''
 
 		for line in file.readlines():
@@ -111,13 +115,12 @@ def parse():
 
 			## FIXME: can't bind > 6 params
 			if len(decl.params) > 6:
-				print(decl.func)
 				SKIPPED.append(str(decl))
 				continue
 
 			data.append(decl)
 
-	with open('_intermediate.txt', 'w') as file:
+	with open(_PARSE_RESULT, 'w') as file:
 		file.write('\n---------------------------------------------------------------------------------------------------------\n')
 		file.write('                                            GENERATED \n')
 		file.write('---------------------------------------------------------------------------------------------------------\n\n')

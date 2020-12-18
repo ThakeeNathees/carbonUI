@@ -2,9 +2,10 @@
 # place carbon "include/" and "bin/" here
 thirdparty/carbon/
 
-gen/_intermediate.txt
-gen/ui.gen.cpp
-gen/ui.gen.h
+# generated files
+gen/parsed.txt
+include/ui.gen.h
+src/ui.gen.cpp
 
 # own files
 imgui.ini
