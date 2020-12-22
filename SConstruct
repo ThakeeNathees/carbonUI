@@ -18,7 +18,6 @@ def USER_DATA(env):
 		Glob('src/platform/%s/*.cpp' % env['platform'] ),
 		Glob("src/types/*.cpp"),
 		Glob("src/*.cpp"),
-		Glob("gen/*.cpp"),
 	]
 
 	env.Append(CPPPATH=['include/'])

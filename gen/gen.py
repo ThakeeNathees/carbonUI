@@ -210,6 +210,4 @@ def write(text, to):
 
 import sys
 if __name__ == '__main__':
-	generate(*sys.argv)
-
-	main()
+	generate(*sys.argv[1:])

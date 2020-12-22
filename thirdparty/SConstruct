@@ -1,6 +1,8 @@
 Import('env')
 
-SOURCES = []
+SOURCES = [
+	Glob('ImGuiColorTextEdit/*.cpp'),
+]
 
 ## compile libs
 SConscript('glad/SConstruct')
@@ -11,5 +13,7 @@ SConscript('ImGui/SConstruct')
 env.Append(LIBS=['carbon'])
 env.Append(LIBPATH=[Dir('./carbon/bin/')])
 env.Append(CPPPATH=[Dir('./carbon/include/')])
+
+env.Append(CPPPATH=[Dir('./ImGuiColorTextEdit/')])
 
 env.LIBS["thirdparty"] += SOURCES
