@@ -1,69 +1,42 @@
 
 #include "carbonUI.h"
 
-#include "TextEditor.h"
 
-void imgui_demo(); // tmp
+#ifdef APIENTRY
+#undef APIENTRY
+#endif
+#define INCLUDE_CRASH_HANDLER_MAIN
+#define CRASH_HANDLER_IMPLEMENTATION
+#include "crash_handler.h"
 
-void text_edit_demo(TextEditor& editor);
-void draw_editor(TextEditor& editor);
+void text_edit_init(TextEditor& editor);
+void text_edit_draw(TextEditor& editor);
 
-int mainloop(int argc, char** argv) {
+int _main(int argc, char** argv) {
 
 	carbon_initialize();
-	if (Glfw_ImGui::initialize() != 0) return 1;
-
-	register_cbimgui();
-	TextEditor editor;
-	text_edit_demo(editor);
+	register_ui();
+	//TextEditor editor;
+	//text_edit_init(editor);
 
 	ptr<Bytecode> bytecode;
-	CarbonFunction* fn;
-
-	stdvec<var*> args;
+	stdvec<String> args;
 	try {
-		bytecode = Compiler::singleton()->compile("bin/main.cb");
-		fn = bytecode->get_function("draw").get();
+		bytecode = Compiler::singleton()->compile("main.cb");
+		VM::singleton()->run(bytecode, args);
 	} catch (Throwable& err) {
 		err.console_log();
 		return -1;
 	}
 
-	while (!glfwWindowShouldClose(Glfw_ImGui::get_window())) {
-		glfwPollEvents();
-		
-		Glfw_ImGui::new_frame();
-		/* ------------------------------------------ */
-		//imgui_dockspace();
-		imgui_demo();
-		draw_editor(editor);
-		//ImGui::ShowDemoWindow();
-
-		try {
-			VM::singleton()->call_function(fn, bytecode.get(), nullptr, args);
-		} catch (Throwable& err) {
-			err.console_log();
-			return -1;
-		}
-
-		/* ------------------------------------------ */
-		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-		glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-		glClear(GL_COLOR_BUFFER_BIT);
-		Glfw_ImGui::draw_frame();
-		glfwSwapBuffers(Glfw_ImGui::get_window());
-	}
-
-	Glfw_ImGui::cleanup();
 	carbon_cleanup();
 
 	return 0;
 
 }
 
-
 // tmp //////////////////////
-void text_edit_demo(TextEditor& editor) {
+void text_edit_init(TextEditor& editor) {
 	auto lang = TextEditor::LanguageDefinition::CPlusPlus();
 	
 	// set your own known preprocessor symbols...
@@ -137,7 +110,7 @@ void text_edit_demo(TextEditor& editor) {
 }
 
 
-void draw_editor(TextEditor& editor) {
+void text_edit_draw(TextEditor& editor) {
 	auto cpos = editor.GetCursorPosition();
 	ImGui::Begin("Text Editor Demo", nullptr, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_MenuBar);
 	ImGui::SetWindowSize(ImVec2(800, 600), ImGuiCond_FirstUseEver);
@@ -200,46 +173,4 @@ void draw_editor(TextEditor& editor) {
 
 	editor.Render("TextEditor");
 	ImGui::End();
-}
-
-void imgui_demo() {
-	// Our state
-	static bool show_demo_window = true;
-	static bool show_another_window = false;
-	static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
-	// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-	ImGui::ShowDemoWindow(&show_demo_window);
-
-	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
-	{
-		static float f = 0.0f;
-		static int counter = 0;
-
-		ImGui::Begin("Hello, world!");                           // Create a window called "Hello, world!" and append into it.
-
-		ImGui::Text("This is some useful text.");                // Display some text (you can use a format strings too)
-		ImGui::Checkbox("Demo Window", &show_demo_window);       // Edit bools storing our window open/close state
-		ImGui::Checkbox("Another Window", &show_another_window);
-
-		ImGui::SliderFloat("float", &f, 0.0f, 1.0f);             // Edit 1 float using a slider from 0.0f to 1.0f
-		ImGui::ColorEdit3("clear color", (float*)&clear_color);  // Edit 3 floats representing a color
-
-		if (ImGui::Button("Button"))                             // Buttons return true when clicked (most widgets return true when edited/activated)
-			counter++;
-		ImGui::SameLine();
-		ImGui::Text("counter = %d", counter);
-
-		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-		ImGui::End();
-	}
-
-	// 3. Show another simple window.
-	if (show_another_window) {
-		ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-		ImGui::Text("Hello from another window!");
-		if (ImGui::Button("Close Me"))
-			show_another_window = false;
-		ImGui::End();
-	}
 }

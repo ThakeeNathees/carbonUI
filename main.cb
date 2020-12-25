@@ -1,0 +1,33 @@
+
+func main() {
+	
+	var window = uiWindow("new window");
+
+	if (window.initialize() != 0) {
+		println("initialize doesn't returned 0");
+		return 1;
+	}
+	
+	var color = Color();
+	
+	while (!window.should_close()) {
+		window.poll_events();
+		
+		window.new_frame();
+		/* ------------------------------------------ */
+		//ui.imgui_dockspace();
+		
+		ui.Begin("testing");
+		ui.ColorEdit3("clear color", color);
+		ui.End();
+		
+		/* ------------------------------------------ */
+		window.clear(color);
+		window.draw_frame();
+		window.swap_buffer();
+	}
+		
+	window.cleanup();
+	return 0;
+	
+}

@@ -9,7 +9,7 @@ SConscript('glad/SConstruct')
 SConscript('glfw/SConstruct')
 SConscript('ImGui/SConstruct')
 
-## TODO: compile from source (live above)
+## TODO: compile from source (like above)
 env.Append(LIBS=['carbon'])
 env.Append(LIBPATH=[Dir('./carbon/bin/')])
 env.Append(CPPPATH=[Dir('./carbon/include/')])

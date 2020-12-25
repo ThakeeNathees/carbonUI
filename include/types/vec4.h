@@ -1,6 +1,8 @@
 #pragma once
 
-#include "glfw_imgui.h"
+#include "gl_api.h"
+#include "carbon.h"
+using namespace carbon;
 
 // Color /////////////////////////
 
@@ -18,6 +20,11 @@ public:
 	var get_member(const String& p_name) override;
 	void set_member(const String& p_name, var& value) override;
 	void* get_data() override;
+
+	inline float r() { return _data.Value.x; }
+	inline float g() { return _data.Value.y; }
+	inline float b() { return _data.Value.z; }
+	inline float a() { return _data.Value.w; }
 
 	ImColor _data;
 };

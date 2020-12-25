@@ -15,7 +15,9 @@ BIND_CLASS = 'ui'
 BIND_TEMPLATE = '''\
 #pragma once
 
-#include "glfw_imgui.h"
+#include "gl_api.h"
+#include "carbon.h"
+using namespace carbon;
 
 #include "types/vec2.h"
 #include "types/vec3.h"
@@ -24,9 +26,19 @@ BIND_TEMPLATE = '''\
 class %s : public Object {
 	REGISTER_CLASS(%s, Object) {
 %s
+
+#ifdef UI_REGISTER_EXTRA
+	UI_REGISTER_EXTRA
+#endif
+
 	}
 public:
 %s
+
+#ifdef UI_METHODS_EXTRA
+	UI_METHODS_EXTRA
+#endif
+
 };
 '''
 

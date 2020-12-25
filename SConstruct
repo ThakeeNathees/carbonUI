@@ -15,7 +15,6 @@ def USER_DATA(env):
 	env.LIBS = { "thirdparty" : [] }
 
 	env.MAIN = [
-		Glob('src/platform/%s/*.cpp' % env['platform'] ),
 		Glob("src/types/*.cpp"),
 		Glob("src/*.cpp"),
 	]
