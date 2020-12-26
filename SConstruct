@@ -6,7 +6,7 @@ from gen.gen import generate
 def USER_DATA(env):
 	env.PROJECT_NAME = "CarbonUI"
 
-	generate('gen/source.txt', 'include/ui.gen.h', 'src/ui.gen.cpp')
+	generate('gen/', 'include/ui.gen.h', 'src/ui.gen.cpp')
 
 	env.SCONSCRIPTS = [
 		'thirdparty/SConstruct',
