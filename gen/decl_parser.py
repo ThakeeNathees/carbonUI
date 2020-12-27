@@ -37,7 +37,8 @@ class Param:
 	def __str__(self):
 		return f'`{self.dtype}` `{self.name}` = `{self.default}`'
 
-def parse(source_path = 'source.txt'):
+def parse(source_path = './'):
+	source_path = os.path.join(source_path, "source.txt")
 
 	SKIPPED = []
 	
@@ -135,4 +136,44 @@ def parse(source_path = 'source.txt'):
 
 	return data
 
+
+
+## ----------------- FLAGS -------------------------------
+
+def parse_flags(source_path = './'):
+	source_path = os.path.join(source_path, "flags.txt")
+	with open(source_path) as file:
+		enum_name = None
+		
+		gen = ""
+		for line in file:
+			if line.startswith('enum '):
+				enum_name = line.strip().split()[1]
+				if enum_name.endswith('_') and enum_name.startswith('ImGui'):
+					enum_name = enum_name[5:-1]
+					gen += '\n\t\tBIND_ENUM("%s", {\n' % enum_name
+				continue
+					
+			if line.startswith('};'):
+				enum_name = None
+				gen += '\t\t});\n'
+				continue
+				
+			value_name = None
+			value_comment = None
+			value_imgui = None
+			if line.strip().startswith('ImGui'):
+				if '//' in line:
+					value_comment = "//" + line[line.find('//')+2 :-1]
+				value_imgui = line.split('//')[0].split('=')[0].split(',')[0].strip()
+				value_name = value_imgui.strip().strip('_')[5:].split('_')[-1]
+				line_str = None
+				if (value_comment is not None):
+					line_str = '\t\t\t{ %-28s %-46s }, %s'%('"'+value_name+'",', value_imgui, value_comment)
+				else:
+					line_str = '\t\t\t{ %-28s %-46s },'%('"'+value_name+'",', value_imgui)
+				gen += line_str + '\n'
+		return gen
+	pass
+	
 	

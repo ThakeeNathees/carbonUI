@@ -94,3 +94,5 @@ SYMBOLS['$vec4&$'         ] = ['ImVec4&',          'ptr<Vec4>',        lambda pa
 SYMBOLS['$vec4$'          ] = ['ImVec4',           'ptr<Vec4>',        lambda param : f'*{param}',          lambda ret : f'newptr<Vec4>({ret})'  ]
 
 
+
+FLAGS = OrderedDict()

@@ -7,7 +7,7 @@ except ImportError:
 	from symbols import SYMBOLS
 
 
-SOURCE_PATH = 'source.txt'
+SOURCE_DIR = './'
 WRITE_TO_HEADER = 'ui.gen.h'
 WRITE_TO_CPP = 'ui.gen.cpp'
 BIND_CLASS = 'ui'
@@ -25,6 +25,8 @@ using namespace carbon;
 
 class %s : public Object {
 	REGISTER_CLASS(%s, Object) {
+%s
+	
 %s
 
 #ifdef UI_REGISTER_EXTRA
@@ -48,12 +50,14 @@ CPP_TEMPLATE = '''\
 %s
 
 '''
+
+
 DECLS = None
 
 import os
-def generate(source = SOURCE_PATH, header = WRITE_TO_HEADER, cpp = WRITE_TO_CPP):
-	global SOURCE_PATH, WRITE_TO_HEADER, WRITE_TO_CPP
-	SOURCE_PATH = source
+def generate(source_dir = SOURCE_DIR, header = WRITE_TO_HEADER, cpp = WRITE_TO_CPP):
+	global SOURCE_DIR, WRITE_TO_HEADER, WRITE_TO_CPP
+	SOURCE_DIR = source_dir
 	WRITE_TO_HEADER = header
 	WRITE_TO_CPP = cpp
 	main()
@@ -80,7 +84,7 @@ def should_skip(decl):
 def generate_header():
 	## decl : list of [Comment] and [Decl]
 	global DECLS
-	DECLS = decl_parser.parse(SOURCE_PATH);
+	DECLS = decl_parser.parse(SOURCE_DIR);
 
 	bindings_str = '\n' ## string of bindings
 	decls_str = '\n'    ## string of declarations
@@ -153,9 +157,11 @@ def generate_header():
 		decl_str += ');'
 		bindings_str += bind_str + '\n'
 		decls_str += decl_str + '\n'
+		
+	flags = decl_parser.parse_flags(SOURCE_DIR)
 
 	write(
-		BIND_TEMPLATE % (BIND_CLASS, BIND_CLASS, bindings_str, decls_str),
+		BIND_TEMPLATE % (BIND_CLASS, BIND_CLASS, flags, bindings_str, decls_str),
 		WRITE_TO_HEADER )
 
 

@@ -1,6 +1,6 @@
 
 func main() {
-	
+
 	var window = uiWindow("new window");
 
 	if (window.initialize() != 0) {
@@ -9,7 +9,7 @@ func main() {
 	}
 	
 	var color = Color();
-	
+
 	while (!window.should_close()) {
 		window.poll_events();
 		
