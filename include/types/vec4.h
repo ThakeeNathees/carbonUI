@@ -9,7 +9,7 @@ using namespace carbon;
 class Color : public Object {
 	REGISTER_CLASS(Color, Object) {
 		BIND_STATIC_FUNC("Color", &Color::_Color,
-			PARAMS("self", "r", "g", "b", "a"), DEFVALUES(nullptr, 0.f, 0.f, 0.f, 1.f));
+			PARAMS("self", "r", "g", "b", "a"), DEFVALUES(0.f, 0.f, 0.f, 1.f));
 	}
 
 public:
@@ -35,7 +35,7 @@ public:
 class Vec4 : public Object {
 	REGISTER_CLASS(Vec4, Object) {
 		BIND_STATIC_FUNC("Vec", &Vec4::_Vec4,
-			PARAMS("self", "x", "y", "z", "w"), DEFVALUES(nullptr, 0.f, 0.f, 0.f, 0.f));
+			PARAMS("self", "x", "y", "z", "w"), DEFVALUES(0.f, 0.f, 0.f, 0.f));
 	}
 
 public:
@@ -55,7 +55,7 @@ public:
 
 class Vec4i : public Object {
 	REGISTER_CLASS(Vec4i, Object) {
-		BIND_STATIC_FUNC("Vec4i", &Vec4i::_Vec4i, PARAMS("self", "x", "y", "z", "w"), DEFVALUES(nullptr, 0, 0, 0, 0));
+		BIND_STATIC_FUNC("Vec4i", &Vec4i::_Vec4i, PARAMS("self", "x", "y", "z", "w"), DEFVALUES(0, 0, 0, 0));
 	}
 
 public:

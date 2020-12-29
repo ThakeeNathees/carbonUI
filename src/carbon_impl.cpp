@@ -1,0 +1,4 @@
+#define CARBON_IMPLEMENTATION
+#define CARBON_NO_MAIN
+#define CARBON_INCLUDE_CRASH_HANDLER_MAIN
+#include "carbon.h"

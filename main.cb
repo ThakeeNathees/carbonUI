@@ -8,7 +8,7 @@ func main() {
 		return 1;
 	}
 	
-	var color = Color();
+	var color = Color(1, .1, .6, 1);
 
 	while (!window.should_close()) {
 		window.poll_events();

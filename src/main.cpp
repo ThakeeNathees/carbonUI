@@ -1,7 +1,6 @@
 
 #include "carbonUI.h"
 
-
 #ifdef APIENTRY
 #undef APIENTRY
 #endif

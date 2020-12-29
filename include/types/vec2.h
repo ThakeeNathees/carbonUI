@@ -9,7 +9,7 @@ using namespace carbon;
 
 class Vec2 : public Object {
 	REGISTER_CLASS(Vec2, Object) {
-		BIND_STATIC_FUNC("Vec2", &Vec2::_Vec2, PARAMS("self", "x", "y"), DEFVALUES(nullptr, 0.f, 0.f));
+		BIND_STATIC_FUNC("Vec2", &Vec2::_Vec2, PARAMS("self", "x", "y"), DEFVALUES(0.f, 0.f));
 	}
 
 public:
@@ -29,7 +29,7 @@ public:
 
 class Vec2i : public Object {
 	REGISTER_CLASS(Vec2i, Object) {
-		BIND_STATIC_FUNC("Vec2i", &Vec2i::_Vec2i, PARAMS("self", "x", "y"), DEFVALUES(nullptr, 0, 0));
+		BIND_STATIC_FUNC("Vec2i", &Vec2i::_Vec2i, PARAMS("self", "x", "y"), DEFVALUES(0, 0));
 	}
 
 public:
