@@ -45,8 +45,7 @@
 	//IM_ASSERT(font != NULL);
 
 
-inline void imgui_dockspace() {
-	static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
+inline void imgui_dockspace(ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None) {
 	static ImGuiWindowFlags window_flags = /*ImGuiWindowFlags_MenuBar |*/ ImGuiWindowFlags_NoDocking
 		| ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize
 		| ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;

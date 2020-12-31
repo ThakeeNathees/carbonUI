@@ -4,33 +4,36 @@
 #include "types/vec3.h"
 #include "types/vec4.h"
 
+#include "TextEditor.h"
+
 class uiWindow : public Object {
 	REGISTER_CLASS(uiWindow, Object) {
-		BIND_STATIC_FUNC("uiWindow", &uiWindow::_uiWindow, PARAMS("self", "title", "size"), DEFVALUES(newptr<Vec2i>(1280, 720)));
-		BIND_METHOD("initialize", &uiWindow::initialize);
-		BIND_METHOD("cleanup", &uiWindow::cleanup);
-		BIND_METHOD("new_frame", &uiWindow::new_frame);
-		BIND_METHOD("draw_frame", &uiWindow::draw_frame);
-		BIND_METHOD("swap_buffer", &uiWindow::swap_buffer);
-		BIND_METHOD("should_close", &uiWindow::should_close);
-		BIND_METHOD("poll_events", &uiWindow::poll_events);
-		BIND_METHOD("clear", &uiWindow::clear, PARAMS("color"), DEFVALUES(newptr<Color>(0.f, 0.f, 0.f, 1.f)));
+		// construct by ui.Window()
+		//BIND_STATIC_FUNC("uiWindow", &uiWindow::_uiWindow, PARAMS("self", "title", "size"), DEFVALUES(newptr<Vec2i>(1280, 720)));
+		BIND_METHOD("Initialize", &uiWindow::Initialize);
+		BIND_METHOD("Cleanup", &uiWindow::Cleanup);
+		BIND_METHOD("NewFrame", &uiWindow::NewFrame);
+		BIND_METHOD("DrawFrame", &uiWindow::DrawFrame);
+		BIND_METHOD("SwapBuffer", &uiWindow::SwapBuffer);
+		BIND_METHOD("ShouldClose", &uiWindow::ShouldClose);
+		BIND_METHOD("PollEvents", &uiWindow::PollEvents);
+		BIND_METHOD("Clear", &uiWindow::Clear, PARAMS("color"), DEFVALUES(newptr<Color>(0.f, 0.f, 0.f, 1.f)));
 	}
 
 	uiWindow(const String& title = "", ptr<Vec2i> size = newptr<Vec2i>(1280, 720));
 	static void _uiWindow(ptr<uiWindow> self, const String& title, ptr<Vec2i> size);
 
-	int initialize();
-	void cleanup();
+	int Initialize();
+	void Cleanup();
 
-	void new_frame();
-	void draw_frame();
-	void swap_buffer();
+	void NewFrame();
+	void DrawFrame();
+	void SwapBuffer();
 
-	bool should_close();
-	void poll_events();
+	bool ShouldClose();
+	void PollEvents();
 
-	void clear(ptr<Color> col);
+	void Clear(ptr<Color> col);
 
 private:
 	friend class ui;
@@ -38,4 +41,22 @@ private:
 	String title = "Carbon UI";
 	GLFWwindow* _window = nullptr;
 
+};
+
+class uiTextEditor : public Object {
+	REGISTER_CLASS(uiTextEditor, Object) {
+		BIND_METHOD("SetText", &uiTextEditor::SetText, PARAMS("text"));
+		BIND_METHOD("GetText", &uiTextEditor::GetText);
+		BIND_METHOD("Render", &uiTextEditor::Render);
+	}
+
+	uiTextEditor();
+
+	// FIXME: bind all methods
+	void SetText(const String& text);
+	String GetText();
+	void Render();
+
+private:
+	TextEditor editor;
 };

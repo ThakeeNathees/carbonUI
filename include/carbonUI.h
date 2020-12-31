@@ -15,14 +15,19 @@ using namespace carbon;
 
 #include "cls_bind.h"
 
-//#define UI_METHODS_EXTRA
+#define UI_REGISTER_EXTRA 																				      \
+	BIND_STATIC_FUNC("DockSpace", &imgui_dockspace, PARAMS("flags"), DEFVALUES(ImGuiDockNodeFlags_None));     \
+	BIND_STATIC_FUNC("Window", &ui::newWindow, PARAMS("title", "size"), DEFVALUES(newptr<Vec2i>(1280, 720))); \
+	BIND_STATIC_FUNC("TextEditor", &ui::newTextEditor);														  \
 
-//#define UI_REGISTER_EXTRA                                      \
-//	BIND_STATIC_FUNC("initialize", &ui::initialize);           \
-//	BIND_STATIC_FUNC("cleanup", &ui::cleanup);		           \
-//	BIND_STATIC_FUNC("new_frame", &ui::new_frame);	           \
-//	BIND_STATIC_FUNC("draw_frame", &ui::draw_frame);           \
-//	BIND_STATIC_FUNC("clear", &ui::clear, PARAMS("color"));    \
+#define UI_METHODS_EXTRA                                                                                \
+	static ptr<uiWindow> newWindow(const String& title, ptr<Vec2i> size = newptr<Vec2i>(1280, 720)) {	\
+		return newptr<uiWindow>(title, size);                                                           \
+	}																									\
+	static ptr<uiTextEditor> newTextEditor() {															\
+		return newptr<uiTextEditor>();                                                       			\
+	}																									\
+
 
 #include "ui.gen.h"
 
@@ -37,4 +42,6 @@ inline void register_ui() {
 
 	NativeClasses::singleton()->register_class<ui>();
 	NativeClasses::singleton()->register_class<uiWindow>();
+	NativeClasses::singleton()->register_class<uiTextEditor>();
+
 }

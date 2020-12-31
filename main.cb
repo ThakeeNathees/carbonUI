@@ -1,33 +1,42 @@
 
 func main() {
 
-	var window = uiWindow("new window");
+	var window = ui.Window("new window");
+	var editor = ui.TextEditor();
+	
+	var file = File("main.cb");
+	editor.SetText(file.read());
+	file.close();
 
-	if (window.initialize() != 0) {
+	if (window.Initialize() != 0) {
 		println("initialize doesn't returned 0");
 		return 1;
 	}
 	
 	var color = Color(1, .1, .6, 1);
 
-	while (!window.should_close()) {
-		window.poll_events();
+
+	while (!window.ShouldClose()) {
+		window.PollEvents();
 		
-		window.new_frame();
+		window.NewFrame();
 		/* ------------------------------------------ */
-		//ui.imgui_dockspace();
+		ui.DockSpace(ui.DockNodeFlags.AutoHideTabBar);
 		
-		ui.Begin("testing");
-		ui.ColorEdit3("clear color", color);
+		var _ = false;
+		ui.Begin("TextEdit", _, ui.WindowFlags.NoTitleBar);
+		//ui.ColorEdit3("clear color", color);
+		editor.Render();
 		ui.End();
 		
+		
 		/* ------------------------------------------ */
-		window.clear(color);
-		window.draw_frame();
-		window.swap_buffer();
+		window.Clear(color);
+		window.DrawFrame();
+		window.SwapBuffer();
 	}
 		
-	window.cleanup();
+	window.Cleanup();
 	return 0;
 	
 }
