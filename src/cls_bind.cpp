@@ -8,7 +8,7 @@ void uiWindow::_uiWindow(ptr<uiWindow> self, const String& title, ptr<Vec2i> siz
 	self->title = title;
 }
 
-void uiWindow::cleanup() {
+void uiWindow::Cleanup() {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
@@ -17,7 +17,7 @@ void uiWindow::cleanup() {
 	glfwTerminate();
 }
 
-int uiWindow::initialize() {
+int uiWindow::Initialize() {
 	glfwSetErrorCallback([](int error, const char* description) {
 		fprintf(stderr, "Glfw Error %d: %s\n", error, description); });
 	if (!glfwInit()) return -1;
@@ -58,13 +58,13 @@ int uiWindow::initialize() {
 	return 0;
 }
 
-void uiWindow::new_frame() {
+void uiWindow::NewFrame() {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 }
 
-void uiWindow::draw_frame() {
+void uiWindow::DrawFrame() {
 	ImGui::Render();
 	int display_w, display_h;
 	glfwGetFramebufferSize(_window, &display_w, &display_h);
@@ -84,18 +84,35 @@ void uiWindow::draw_frame() {
 	}
 }
 
-void uiWindow::swap_buffer() {
+void uiWindow::SwapBuffer() {
 	glfwSwapBuffers(_window);
 }
 
-bool uiWindow::should_close() {
+bool uiWindow::ShouldClose() {
 	return glfwWindowShouldClose(_window);
 }
 
-void uiWindow::poll_events() {
+void uiWindow::PollEvents() {
 	glfwPollEvents();
 }
 
-void uiWindow::clear(ptr<Color> col) {
+void uiWindow::Clear(ptr<Color> col) {
 	glClearColor(col->r(), col->g(), col->b(), col->a()); glClear(GL_COLOR_BUFFER_BIT);
+}
+
+// -- TEXT EDITOR --------------------------------------------------
+
+uiTextEditor::uiTextEditor() {
+}
+
+void uiTextEditor::SetText(const String& text) {
+	editor.SetText(text.operator const std::string &());
+}
+
+String uiTextEditor::GetText() {
+	return editor.GetText();
+}
+
+void uiTextEditor::Render() {
+	editor.Render("TextEditor");
 }

@@ -11,13 +11,48 @@
 void text_edit_init(TextEditor& editor);
 void text_edit_draw(TextEditor& editor);
 
+void test_main() {
+	uiWindow window = uiWindow("new window");
+
+	if (window.Initialize() != 0) {
+		printf("initialize doesn't returned 0");
+		DEBUG_BREAK();
+		exit(1);
+	}
+	
+
+	TextEditor editor;
+	text_edit_init(editor);
+
+	var color = newptr<Color>(1, .1, .6, 1);
+	while (!window.ShouldClose()) {
+		window.PollEvents();
+		
+		window.NewFrame();
+		//imgui_dockspace();
+		/* ------------------------------------------ */
+		ImGui::ShowDemoWindow();
+		//ui::Begin("tes-ting", nullptr, 0);
+		//ui::ColorEdit3("clear color", color, 0);
+		//ui::End();
+		text_edit_draw(editor);
+		
+		/* ------------------------------------------ */
+		window.Clear(color);
+		window.DrawFrame();
+		window.SwapBuffer();
+	}
+		
+	window.Cleanup();
+	return;
+}
+
 int _main(int argc, char** argv) {
 
 	carbon_initialize();
 	register_ui();
-	//TextEditor editor;
-	//text_edit_init(editor);
 
+#if !defined(TEST_MAIN)
 	ptr<Bytecode> bytecode;
 	stdvec<String> args;
 	try {
@@ -27,6 +62,9 @@ int _main(int argc, char** argv) {
 		err.console_log();
 		return -1;
 	}
+#else
+	test_main();
+#endif
 
 	carbon_cleanup();
 
