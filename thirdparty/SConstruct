@@ -4,6 +4,9 @@ SOURCES = [
 	Glob('ImGuiColorTextEdit/*.cpp'),
 ]
 
+## glfw dependencies
+env.Append(LIBS=['X11'])
+
 ## compile libs
 SConscript('glad/SConstruct')
 SConscript('glfw/SConstruct')
@@ -12,3 +15,4 @@ SConscript('ImGui/SConstruct')
 env.Append(CPPPATH=[Dir('./ImGuiColorTextEdit/')])
 
 env.LIBS["thirdparty"] += SOURCES
+

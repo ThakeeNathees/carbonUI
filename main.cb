@@ -21,11 +21,10 @@ func main() {
 		
 		window.NewFrame();
 		/* ------------------------------------------ */
-		ui.DockSpace(ui.DockNodeFlags.AutoHideTabBar);
+		//ui.DockSpace(ui.DockNodeFlags.AutoHideTabBar);
 		
-		var _ = false;
-		ui.Begin("TextEdit", _, ui.WindowFlags.NoTitleBar);
-		//ui.ColorEdit3("clear color", color);
+		ui.Begin("TextEdit", false /*ui.WindowFlags.NoTitleBar*/);
+		ui.ColorEdit3("clear color", color);
 		editor.Render();
 		ui.End();
 		
