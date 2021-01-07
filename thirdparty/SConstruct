@@ -4,9 +4,6 @@ SOURCES = [
 	Glob('ImGuiColorTextEdit/*.cpp'),
 ]
 
-## glfw dependencies
-env.Append(LIBS=['X11'])
-
 ## compile libs
 SConscript('glad/SConstruct')
 SConscript('glfw/SConstruct')

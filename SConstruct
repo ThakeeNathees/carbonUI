@@ -23,8 +23,10 @@ def USER_DATA(env):
 
 	if env['platform'] == 'windows':
 		env.Append(LIBS=['gdi32.lib', 'shell32.lib'])
+		env.Append(LIBS=['psapi', 'dbghelp']) ## for crash handler
 	elif env['platform'] == 'linux':
-		env.Append(LIBS=['GL'])
+		## glfw dependencies
+		env.Append(LIBS=['GL', 'X11'])
 	elif env['platform'] == 'osx':
 		env.Append(LIBS=['GL'])
 
@@ -48,8 +50,23 @@ opts.Add(BoolVariable('verbose', "use verbose build command", False))
 opts.Add(BoolVariable('libs', "include unit tests in main", False))
 
 ## Updates the environment with the option variables.
-opts.Update(env)
+## Setup the Environment
+if 'use_llvm' in opts.args.keys() and opts.args['use_llvm']:
+	env['CC'] = 'clang'
+	env['CXX'] = 'clang++'
+elif 'use_mingw' in opts.args.keys() and opts.args['use_mingw']:
+	env = Environment(tools = ['mingw'], ENV = {'PATH' : os.environ['PATH']})
+	env['tools'] = ['mingw']
+else:
+	## Gets the standard flags CC, CCX, etc.
+	env = DefaultEnvironment()
+	if sys.platform == 'win32':
+		## scons can't find "cl.exe"
+		os.environ['PATH'] = env['ENV']['PATH']
 
+## Updates the environment with the option variables.
+opts.Update(env)
+		
 ## find platform
 if env['platform'] == 'linux':
 	env['platform'] = 'x11'
@@ -101,21 +118,24 @@ elif env['platform'] == "windows":
 	## that way you can run scons in a vs 2017 prompt and it will find all the required tools
 	env.Append(ENV=os.environ)
 
-	env.Append(CXXFLAGS=['/std:c++17', '/bigobj'])
-	env.Append(CPPDEFINES=['_CRT_SECURE_NO_WARNINGS'])
-	env.Append(CPPDEFINES=['WIN32', '_WIN32', '_WINDOWS'])
-	env.Append(CCFLAGS=['-W3', '-GR'])
-	env.Append(LINKFLAGS='-SUBSYSTEM:CONSOLE')
-	env.Append(LIBS=[])
+	## MSVC
+	if env['CC'] == 'cl':
+		env.Append(CXXFLAGS=['/bigobj'])
+		env.Append(CPPDEFINES=['_CRT_SECURE_NO_WARNINGS'])
+		env.Append(CCFLAGS=['-W3', '-GR', '/FS'])
+		env.Append(LINKFLAGS=['-SUBSYSTEM:CONSOLE'])
+		if env['target'] == 'debug':
+			env.Append(CPPDEFINES=['_DEBUG'])
+			env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
+			env.Append(LINKFLAGS=['-DEBUG'])
+		else:
+			env.Append(CPPDEFINES=['NDEBUG'])
+			env.Append(CCFLAGS=['-O2', '-EHsc', '-MD'])
 
-	if env['target'] == 'debug':
-		env.Append(CPPDEFINES=['DEBUG'])
-		env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
-		env.Append(LINKFLAGS=['-DEBUG'])
-	else:
-		env.Append(CPPDEFINES=['NDEBUG'])
-		env.Append(CCFLAGS=['-O2', '-EHsc', '-MD'])
-	env.Append(LIBS=['psapi', 'dbghelp']) ## for crash handler
+	## MINGW
+	if env['CC'] == 'gcc':
+		pass
+
 
 ## --------------------------------------------------------------------------------
 
