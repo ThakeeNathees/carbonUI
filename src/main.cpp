@@ -32,6 +32,8 @@ void test_main() {
 		//imgui_dockspace();
 		/* ------------------------------------------ */
 		ImGui::ShowDemoWindow();
+		//bool isp = ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_End));
+		//if (isp) printf("true");;
 		//ui::Begin("tes-ting", nullptr, 0);
 		//ui::ColorEdit3("clear color", color, 0);
 		//ui::End();
