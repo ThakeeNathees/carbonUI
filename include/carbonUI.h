@@ -19,14 +19,24 @@ using namespace carbon;
 	BIND_STATIC_FUNC("DockSpace", &imgui_dockspace, PARAMS("flags"), DEFVALUES(ImGuiDockNodeFlags_None));     \
 	BIND_STATIC_FUNC("Window", &ui::newWindow, PARAMS("title", "size"), DEFVALUES(newptr<Vec2i>(1280, 720))); \
 	BIND_STATIC_FUNC("TextEditor", &ui::newTextEditor);														  \
+	/* */																								      \
+	BIND_STATIC_FUNC("InputText", &ui::InputText, PARAMS("label", "buffer", "flags", DEFVALUES(0)));		  \
 
-#define UI_METHODS_EXTRA                                                                                \
-	static ptr<uiWindow> newWindow(const String& title, ptr<Vec2i> size = newptr<Vec2i>(1280, 720)) {	\
-		return newptr<uiWindow>(title, size);                                                           \
-	}																									\
-	static ptr<uiTextEditor> newTextEditor() {															\
-		return newptr<uiTextEditor>();                                                       			\
-	}																									\
+#define UI_METHODS_EXTRA                                                                                      \
+	static ptr<uiWindow> newWindow(const String& title, ptr<Vec2i> size = newptr<Vec2i>(1280, 720)) {	      \
+		return newptr<uiWindow>(title, size);                                                                 \
+	}																									      \
+	static ptr<uiTextEditor> newTextEditor() {															      \
+		return newptr<uiTextEditor>();                                                       			      \
+	}																									      \
+	/* */																								      \
+	static bool InputText(const String& label, String& buff, ImGuiInputTextFlags flags = 0) {				  \
+		if (buff.size() == 0) {																				  \
+			buff = (var(String(" "))*1024).operator String&();												  \
+			buff[0] = '\0';																					  \
+		}																									  \
+		return ImGui::InputText(label.c_str(), (char*)buff.get_data(), buff.size(), flags);					  \
+	}																									      \
 
 
 #include "ui.gen.h"

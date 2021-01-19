@@ -2,7 +2,7 @@
 // MIT License
 //------------------------------------------------------------------------------
 // 
-// Copyright (c) 2020 Thakee Nathees
+// Copyright (c) 2020-2021 Thakee Nathees
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -550,6 +550,7 @@ public:
 	static std::string path_absolute(const std::string& p_path);
 	static bool path_exists(const std::string& p_path);
 	static bool path_isdir(const std::string& p_path);
+	static stdvec<std::string> path_listdir(const std::string& p_path);
 };
 
 }
@@ -612,6 +613,8 @@ public:
 	String strip() const; // lstrip, rstrip
 	String join(const Array& p_elements) const;
 	String replace(const String& p_with, const String& p_what) const;
+	int64_t find(const String& p_what, int64_t p_offset = 0) const;
+	bool contains(const String& p_what) const;
 
 	// operators.
 	char operator[](int64_t p_index) const;
@@ -721,6 +724,7 @@ public:
 	Array& sort();
 	var& back();
 	var& front();
+	bool contains(const var& p_elem);
 
 	String to_string() const;
 	operator bool() const;
@@ -869,9 +873,9 @@ public:
 	var& operator[](const var& p_key);
 
 	// TODO: move them to native
-	static var call_method_s(ptr<Object> p_self, const String& p_name, stdvec<var*>& p_args);
-	static var get_member_s(ptr<Object> p_self, const String& p_name);
-	static void set_member_s(ptr<Object> p_self, const String& p_name, var& p_value);
+	static var call_method_s(ptr<Object>& p_self, const String& p_name, stdvec<var*>& p_args);
+	static var get_member_s(ptr<Object>& p_self, const String& p_name);
+	static void set_member_s(ptr<Object>& p_self, const String& p_name, var& p_value);
 
 	virtual var call_method(const String& p_method_name, stdvec<var*>& p_args);
 	virtual var get_member(const String& p_member_name);
@@ -1795,7 +1799,7 @@ public:
 	virtual BindData::Type get_type() const { return BindData::METHOD; }
 	virtual int get_argc() const { return argc; }
 
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const = 0;
+	virtual var call(Object* self, stdvec<var*>& args) const = 0;
 	const ptr<MethodInfo> get_method_info() const { return mi; }
 	const ptr<MemberInfo> get_member_info() const override { return mi; }
 };
@@ -1820,7 +1824,7 @@ protected:
 	ptr<PropertyInfo> pi;
 public:
 	virtual BindData::Type get_type() const { return BindData::MEMBER_VAR; }
-	virtual var& get(ptr<Object> self) const = 0;
+	virtual var& get(Object* self) const = 0;
 
 	const ptr<PropertyInfo> get_prop_info() const { return pi; }
 	const ptr<MemberInfo> get_member_info() const override { return pi; }
@@ -1840,8 +1844,8 @@ public:
 		pi->_set_bind((void*)this);
 	}
 
-	virtual var& get(ptr<Object> self) const override {
-		return ptrcast<Class>(self).get()->*member_ptr;
+	virtual var& get(Object* self) const override {
+		return ((Class*)(self))->*member_ptr;
 	}
 };
 
@@ -2031,12 +2035,12 @@ using F7 = R(*)(a0, a1, a2, a3, a4, a5, a6);
 
 
 template <typename T, class M, typename _TRet, typename std::enable_if<!std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_0(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	return (ptrcast<T>(self).get()->*method)();
+inline var _internal_call_method_0(Object* self, const M& method, stdvec<var*>& args) {
+	return (((T*)self)->*method)();
 }
 template <typename T, class M, typename _TRet, typename std::enable_if<std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_0(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	(ptrcast<T>(self).get()->*method)(); return var();
+inline var _internal_call_method_0(Object* self, const M& method, stdvec<var*>& args) {
+	(((T*)self)->*method)(); return var();
 }
 
 template<typename T, typename R>
@@ -2052,7 +2056,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2086,7 +2090,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2109,12 +2113,12 @@ public:
 };
 
 template <typename T, class M, typename _TRet, typename std::enable_if<!std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_1(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	return (ptrcast<T>(self).get()->*method)(*args[0]);
+inline var _internal_call_method_1(Object* self, const M& method, stdvec<var*>& args) {
+	return (((T*)self)->*method)(*args[0]);
 }
 template <typename T, class M, typename _TRet, typename std::enable_if<std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_1(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	(ptrcast<T>(self).get()->*method)(*args[0]); return var();
+inline var _internal_call_method_1(Object* self, const M& method, stdvec<var*>& args) {
+	(((T*)self)->*method)(*args[0]); return var();
 }
 
 template<typename T, typename R, typename a0>
@@ -2130,7 +2134,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2164,7 +2168,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2187,12 +2191,12 @@ public:
 };
 
 template <typename T, class M, typename _TRet, typename std::enable_if<!std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_2(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	return (ptrcast<T>(self).get()->*method)(*args[0], *args[1]);
+inline var _internal_call_method_2(Object* self, const M& method, stdvec<var*>& args) {
+	return (((T*)self)->*method)(*args[0], *args[1]);
 }
 template <typename T, class M, typename _TRet, typename std::enable_if<std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_2(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	(ptrcast<T>(self).get()->*method)(*args[0], *args[1]); return var();
+inline var _internal_call_method_2(Object* self, const M& method, stdvec<var*>& args) {
+	(((T*)self)->*method)(*args[0], *args[1]); return var();
 }
 
 template<typename T, typename R, typename a0, typename a1>
@@ -2208,7 +2212,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2242,7 +2246,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2265,12 +2269,12 @@ public:
 };
 
 template <typename T, class M, typename _TRet, typename std::enable_if<!std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_3(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	return (ptrcast<T>(self).get()->*method)(*args[0], *args[1], *args[2]);
+inline var _internal_call_method_3(Object* self, const M& method, stdvec<var*>& args) {
+	return (((T*)self)->*method)(*args[0], *args[1], *args[2]);
 }
 template <typename T, class M, typename _TRet, typename std::enable_if<std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_3(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	(ptrcast<T>(self).get()->*method)(*args[0], *args[1], *args[2]); return var();
+inline var _internal_call_method_3(Object* self, const M& method, stdvec<var*>& args) {
+	(((T*)self)->*method)(*args[0], *args[1], *args[2]); return var();
 }
 
 template<typename T, typename R, typename a0, typename a1, typename a2>
@@ -2286,7 +2290,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2320,7 +2324,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2343,12 +2347,12 @@ public:
 };
 
 template <typename T, class M, typename _TRet, typename std::enable_if<!std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_4(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	return (ptrcast<T>(self).get()->*method)(*args[0], *args[1], *args[2], *args[3]);
+inline var _internal_call_method_4(Object* self, const M& method, stdvec<var*>& args) {
+	return (((T*)self)->*method)(*args[0], *args[1], *args[2], *args[3]);
 }
 template <typename T, class M, typename _TRet, typename std::enable_if<std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_4(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	(ptrcast<T>(self).get()->*method)(*args[0], *args[1], *args[2], *args[3]); return var();
+inline var _internal_call_method_4(Object* self, const M& method, stdvec<var*>& args) {
+	(((T*)self)->*method)(*args[0], *args[1], *args[2], *args[3]); return var();
 }
 
 template<typename T, typename R, typename a0, typename a1, typename a2, typename a3>
@@ -2364,7 +2368,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2398,7 +2402,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2421,12 +2425,12 @@ public:
 };
 
 template <typename T, class M, typename _TRet, typename std::enable_if<!std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_5(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	return (ptrcast<T>(self).get()->*method)(*args[0], *args[1], *args[2], *args[3], *args[4]);
+inline var _internal_call_method_5(Object* self, const M& method, stdvec<var*>& args) {
+	return (((T*)self)->*method)(*args[0], *args[1], *args[2], *args[3], *args[4]);
 }
 template <typename T, class M, typename _TRet, typename std::enable_if<std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_5(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	(ptrcast<T>(self).get()->*method)(*args[0], *args[1], *args[2], *args[3], *args[4]); return var();
+inline var _internal_call_method_5(Object* self, const M& method, stdvec<var*>& args) {
+	(((T*)self)->*method)(*args[0], *args[1], *args[2], *args[3], *args[4]); return var();
 }
 
 template<typename T, typename R, typename a0, typename a1, typename a2, typename a3, typename a4>
@@ -2442,7 +2446,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2476,7 +2480,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2499,12 +2503,12 @@ public:
 };
 
 template <typename T, class M, typename _TRet, typename std::enable_if<!std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_6(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	return (ptrcast<T>(self).get()->*method)(*args[0], *args[1], *args[2], *args[3], *args[4], *args[5]);
+inline var _internal_call_method_6(Object* self, const M& method, stdvec<var*>& args) {
+	return (((T*)self)->*method)(*args[0], *args[1], *args[2], *args[3], *args[4], *args[5]);
 }
 template <typename T, class M, typename _TRet, typename std::enable_if<std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_6(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	(ptrcast<T>(self).get()->*method)(*args[0], *args[1], *args[2], *args[3], *args[4], *args[5]); return var();
+inline var _internal_call_method_6(Object* self, const M& method, stdvec<var*>& args) {
+	(((T*)self)->*method)(*args[0], *args[1], *args[2], *args[3], *args[4], *args[5]); return var();
 }
 
 template<typename T, typename R, typename a0, typename a1, typename a2, typename a3, typename a4, typename a5>
@@ -2520,7 +2524,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2554,7 +2558,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2577,12 +2581,12 @@ public:
 };
 
 template <typename T, class M, typename _TRet, typename std::enable_if<!std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_7(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	return (ptrcast<T>(self).get()->*method)(*args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6]);
+inline var _internal_call_method_7(Object* self, const M& method, stdvec<var*>& args) {
+	return (((T*)self)->*method)(*args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6]);
 }
 template <typename T, class M, typename _TRet, typename std::enable_if<std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_method_7(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	(ptrcast<T>(self).get()->*method)(*args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6]); return var();
+inline var _internal_call_method_7(Object* self, const M& method, stdvec<var*>& args) {
+	(((T*)self)->*method)(*args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6]); return var();
 }
 
 template<typename T, typename R, typename a0, typename a1, typename a2, typename a3, typename a4, typename a5, typename a6>
@@ -2598,7 +2602,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -2632,7 +2636,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 
 		int default_arg_count = mi->get_default_arg_count();
 		int args_given = (int)args.size();
@@ -3238,13 +3242,13 @@ using FVA = R(*)(stdvec<var*>&);
 
 
 template <typename T, class M, typename _TRet, typename std::enable_if<!std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_static_func_va(ptr<Object> self, const M& method, stdvec<var*>& args) {
-	return (ptrcast<T>(self).get()->*method)(args);
+inline var _internal_call_static_func_va(Object* self, const M& method, stdvec<var*>& args) {
+	return (((T*)self)->*method)(args);
 }
 
 template <typename T, class M, typename _TRet, typename std::enable_if<std::is_same<_TRet, void>::value, bool>::type = true>
-inline var _internal_call_static_func_va(ptr<Object> self, const M& method, stdvec<var*>& args) {{
-	(ptrcast<T>(self).get()->*method)(args); return var();
+inline var _internal_call_static_func_va(Object* self, const M& method, stdvec<var*>& args) {{
+	(((T*)self)->*method)(args); return var();
 }}
 
 template<typename T, typename R>
@@ -3260,7 +3264,7 @@ public:
 		mi = p_mi;
 		mi->_set_bind((void*)this);
 	}
-	virtual var call(ptr<Object> self, stdvec<var*>& args) const override {
+	virtual var call(Object* self, stdvec<var*>& args) const override {
 		return _internal_call_static_func_va<T, _Tmethod_va, R>(self, method, args);
 	}
 
@@ -3413,16 +3417,16 @@ static void _check_method_and_args(const String& p_method, const stdvec<var*>& p
 		int arg_count = mp->get_arg_count();
 		int default_arg_count = mp->get_default_arg_count();
 		if (arg_count != -1) {
-			if (p_args.size() + default_arg_count < arg_count) { /* Args not enough. */
+			if ((int)p_args.size() + default_arg_count < arg_count) { /* Args not enough. */
 				if (default_arg_count == 0) THROW_ERROR(Error::INVALID_ARG_COUNT, String::format("expected at exactly %i argument(s).", arg_count));
 				else THROW_ERROR(Error::INVALID_ARG_COUNT, String::format("expected at least %i argument(s).", arg_count - default_arg_count));
-			} else if (p_args.size() > arg_count) { /* More args proveded.    */
+			} else if ((int)p_args.size() > arg_count) { /* More args proveded.    */
 				if (default_arg_count == 0) THROW_ERROR(Error::INVALID_ARG_COUNT, String::format("expected at exactly %i argument(s).", arg_count));
 				else THROW_ERROR(Error::INVALID_ARG_COUNT, String::format(
 					"expected minimum of %i argument(s) and maximum of %i argument(s).", arg_count - default_arg_count, arg_count));
 			}
 		}
-		for (int j = 0; j < mp->get_arg_types().size(); j++) {
+		for (int j = 0; j < (int)mp->get_arg_types().size(); j++) {
 			if (mp->get_arg_types()[j] == VarTypeInfo(var::VAR)) continue; /* can't be _NULL. */
 			if (p_args.size() == j) break; /* rest are default args. */
 			if (mp->get_arg_types()[j] != VarTypeInfo(p_args[j]->get_type(), p_args[j]->get_type_name().c_str()))
@@ -3712,6 +3716,7 @@ class Path : public Object {
 		BIND_METHOD("extension",  &Path::extension);
 		BIND_METHOD("exists",     &Path::exists);
 		BIND_METHOD("isdir",      &Path::isdir);
+		BIND_METHOD("listdir",    &Path::listdir);
 
 	}
 
@@ -3725,6 +3730,7 @@ public:
 	String extension();
 	bool exists();
 	bool isdir();
+	Array listdir();
 
 	ptr<Path> join(const String& p_path) const;
 	ptr<Path> operator /(const Path& p_other) const;
@@ -4286,7 +4292,7 @@ struct Opcodes {
 
 namespace carbon {
 
-class Bytecode : public Object {
+class Bytecode : public Object, public std::enable_shared_from_this<Bytecode> {
 	REGISTER_CLASS(Bytecode, Object) {}
 
 	friend class CodeGen;
@@ -4309,8 +4315,8 @@ private: // members.
 	stdmap<String, ptr<Bytecode>> _externs;  // imported for FileNode
 
 	stdmap<String, uint32_t> _members;       // member index. offset willbe added for inherited instances.
-	stdmap<String, var> _static_vars;        // TODO : change to stdvec<String> since var is stored _member_vars
-	stdmap<String, var> _constants;			 // TODO : same as above
+	stdmap<String, var> _static_vars;
+	stdmap<String, var> _constants;
 	stdmap<String, int64_t> _unnamed_enums;
 	stdmap<String, ptr<EnumInfo>> _enums;
 	stdmap<String, ptr<Function>> _functions;
@@ -5008,10 +5014,10 @@ public:
 	_GLOBAL_STR(__mul);
 	_GLOBAL_STR(__div);
 
-	_GLOBAL_STR(__add_eq);
-	_GLOBAL_STR(__sub_eq);
-	_GLOBAL_STR(__mul_eq);
-	_GLOBAL_STR(__div_eq);
+	//_GLOBAL_STR(__add_eq);
+	//_GLOBAL_STR(__sub_eq);
+	//_GLOBAL_STR(__mul_eq);
+	//_GLOBAL_STR(__div_eq);
 
 	_GLOBAL_STR(__gt);
 	_GLOBAL_STR(__lt);
@@ -5054,6 +5060,7 @@ private:
 
 	void _check_identifier(ptr<Parser::Node>& p_expr);
 	void _check_member_var_shadow(void* p_base, Parser::ClassNode::BaseType p_base_type, stdvec<ptr<Parser::VarNode>>& p_vars);
+	void _check_operator_methods(const Parser::FunctionNode* p_func);
 	void _check_super_constructor_call(const Parser::BlockNode* p_block);
 	void _check_arg_count(int p_argc, int p_default_argc, int p_args_given, Vect2i p_err_pos = Vect2i(0, 0));
 
@@ -5122,7 +5129,6 @@ public:
 	
 	const stdvec<uint32_t>& get_opcodes() const;
 	const stdmap<uint32_t, uint32_t>& get_op_dbg() const;
-	String get_opcodes_as_string() const;
 
 	var __call(stdvec<var*>& p_args) override;
 };
@@ -5704,11 +5710,11 @@ var NativeClasses::call_method_on(ptr<Object>& p_on, const String& p_attrib, std
 	if (bd != nullptr) {
 		switch (bd->get_type()) {
 			case BindData::METHOD:
-				return static_cast<MethodBind*>(bd)->call(p_on, p_args);
+				return static_cast<MethodBind*>(bd)->call(p_on.get(), p_args);
 			case BindData::STATIC_FUNC:
 				return static_cast<StaticFuncBind*>(bd)->call(p_args);
 			case BindData::MEMBER_VAR:
-				return static_cast<PropertyBind*>(bd)->get(p_on).__call(p_args);
+				return static_cast<PropertyBind*>(bd)->get(p_on.get()).__call(p_args);
 			case BindData::STATIC_VAR:
 				return static_cast<StaticPropertyBind*>(bd)->get().__call(p_args);
 			case BindData::STATIC_CONST:
@@ -7369,6 +7375,7 @@ const stdmap<size_t, ptr<MemberInfo>>& TypeInfo::get_member_info_list_array() {
 		_NEW_METHOD_INFO("resize",       _PARAMS("size" ),    _TYPES(var::INT),     var::_NULL ),
 		_NEW_METHOD_INFO("reserve",      _PARAMS("size" ),    _TYPES(var::INT),     var::_NULL ),
 		_NEW_METHOD_INFO("sort",                                                    var::ARRAY ),
+		_NEW_METHOD_INFO("contains",    _PARAMS("element"),   _TYPES(var::VAR),     var::BOOL  ),
 	};
 	return member_info_s;
 }
@@ -7385,9 +7392,10 @@ var Array::call_method(const String& p_method, const stdvec<var*>& p_args) {
 		case "clear"_hash: { clear(); return var(); }
 		case "insert"_hash: { insert(*p_args[0], *p_args[1]); return var(); }
 		case "at"_hash:        return at(p_args[0]->operator int64_t());
-		case "resize"_hash: { resize(p_args[0]->operator int64_t()); return var(); }
-		case "reserve"_hash: { reserve(p_args[0]->operator int64_t()); return var(); }
+		case "resize"_hash: { resize((size_t)p_args[0]->operator int64_t()); return var(); }
+		case "reserve"_hash: { reserve((size_t)p_args[0]->operator int64_t()); return var(); }
 		case "sort"_hash: { return sort(); }
+		case "contains"_hash: { return contains(p_args[0]); }
 	}
 	// TODO: add more.
 	DEBUG_BREAK(); THROW_ERROR(Error::BUG, "can't reach here.");
@@ -7410,33 +7418,40 @@ void   Array::push_back(const var& p_var) { _data->push_back(p_var); }
 void   Array::pop_back() { _data->pop_back(); }
 Array& Array::append(const var& p_var) { push_back(p_var); return *this; }
 void   Array::clear() { (*_data).clear(); }
-void   Array::insert(int64_t p_index, const var& p_var) { _data->insert(_data->begin() + p_index, p_var); }
+void   Array::insert(int64_t p_index, const var& p_var) { _data->insert(_data->begin() + (int)p_index, p_var); }
 void   Array::resize(size_t p_size) { _data->resize(p_size); }
 void   Array::reserve(size_t p_size) { _data->reserve(p_size); }
 Array& Array::sort() { std::sort(_data->begin(), _data->end()); return *this; }
 var&   Array::back() { return (*_data).back(); }
 var&   Array::front() { return (*_data).front(); }
 
+bool Array::contains(const var& p_elem) {
+	for (const var& e : (*_data)) {
+		if (e == p_elem) return true;
+	}
+	return false;
+}
+
 var& Array::at(int64_t p_index) {
 	if (0 <= p_index && p_index < (int64_t)size())
-		return (*_data).at(p_index);
+		return (*_data).at((size_t)p_index);
 	if ((int64_t)size() * -1 <= p_index && p_index < 0)
-		return (*_data).at(size() + p_index);
+		return (*_data).at(size() + (size_t)p_index);
 	THROW_ERROR(Error::INVALID_INDEX, String::format("Array index %i is invalid.", p_index));
 }
 
 var& Array::operator[](int64_t p_index) const {
 	if (0 <= p_index && p_index < (int64_t)size())
-		return _data->operator[](p_index);
+		return _data->operator[]((size_t)p_index);
 	if ((int64_t)size() * -1 <= p_index && p_index < 0)
-		return _data->operator[](size() + p_index);
+		return _data->operator[](size() + (size_t)p_index);
 	THROW_ERROR(Error::INVALID_INDEX, String::format("Array index %i is invalid.", p_index));
 }
 var& Array::operator[](int64_t p_index) {
 	if (0 <= p_index && p_index < (int64_t)size())
-		return _data->operator[](p_index);
+		return _data->operator[]((size_t)p_index);
 	if ((int64_t)size() * -1 <= p_index && p_index < 0)
-		return _data->operator[](size() + p_index);
+		return _data->operator[](size() + (size_t)p_index);
 	THROW_ERROR(Error::INVALID_INDEX, String::format("Array index %i is invalid.", p_index));
 }
 
@@ -7754,7 +7769,7 @@ void Object::_bind_data(NativeClasses* p_native_classes) {
 }
 
 // call_method() should call it's parent if method not exists.
-var Object::call_method_s(ptr<Object> p_self, const String& p_name, stdvec<var*>& p_args) {
+var Object::call_method_s(ptr<Object>& p_self, const String& p_name, stdvec<var*>& p_args) {
 
 	if (!p_self->_is_registered()) return p_self->call_method(p_name, p_args);
 
@@ -7768,7 +7783,7 @@ var Object::call_method_s(ptr<Object> p_self, const String& p_name, stdvec<var*>
 
 	if (bind_data != nullptr) {
 		if (bind_data->get_type() == BindData::METHOD) {
-			if (!p_self->_is_native_ref()) return ptrcast<MethodBind>(bind_data)->call(p_self, p_args);
+			if (!p_self->_is_native_ref()) return ptrcast<MethodBind>(bind_data)->call(p_self.get(), p_args);
 			else THROW_ERROR(Error::ATTRIBUTE_ERROR, String::format("cannot call a non static method named \"%s\" (on type %s) statically.", method_name.c_str(), p_self->get_type_name()));
 
 		} else if (bind_data->get_type() == BindData::STATIC_FUNC) {
@@ -7778,7 +7793,7 @@ var Object::call_method_s(ptr<Object> p_self, const String& p_name, stdvec<var*>
 			return ptrcast<StaticPropertyBind>(bind_data)->get().__call(p_args);
 
 		} else if (bind_data->get_type() == BindData::MEMBER_VAR) {
-			return ptrcast<PropertyBind>(bind_data)->get(p_self).__call(p_args);
+			return ptrcast<PropertyBind>(bind_data)->get(p_self.get()).__call(p_args);
 
 		} else {
 			THROW_ERROR(Error::TYPE_ERROR, String::format("attribute named \"%s\" on type %s is not callable.", method_name.c_str(), p_self->get_type_name()));
@@ -7790,7 +7805,7 @@ var Object::call_method_s(ptr<Object> p_self, const String& p_name, stdvec<var*>
 	THROW_ERROR(Error::ATTRIBUTE_ERROR, String::format("type %s has no method named \"%s\".", p_self->get_type_name(), method_name.c_str()));
 }
 
-var Object::get_member_s(ptr<Object> p_self, const String& p_name) {
+var Object::get_member_s(ptr<Object>& p_self, const String& p_name) {
 
 	if (!p_self->_is_registered()) return p_self->get_member(p_name);
 
@@ -7804,7 +7819,7 @@ var Object::get_member_s(ptr<Object> p_self, const String& p_name) {
 
 	if (bind_data != nullptr) {
 		if (bind_data->get_type() == BindData::MEMBER_VAR) {
-			if (!p_self->_is_native_ref()) return ptrcast<PropertyBind>(bind_data)->get(p_self);
+			if (!p_self->_is_native_ref()) return ptrcast<PropertyBind>(bind_data)->get(p_self.get());
 			else THROW_ERROR(Error::ATTRIBUTE_ERROR, String::format("cannot access a non static attribute named \"%s\" (on type %s) statically.", member_name.c_str(), class_name.c_str()));
 		} else if (bind_data->get_type() == BindData::STATIC_VAR) {
 			return ptrcast<StaticPropertyBind>(bind_data)->get();
@@ -7827,7 +7842,7 @@ var Object::get_member_s(ptr<Object> p_self, const String& p_name) {
 }
 
 
-void Object::set_member_s(ptr<Object> p_self, const String& p_name, var& p_value) {
+void Object::set_member_s(ptr<Object>& p_self, const String& p_name, var& p_value) {
 
 	if (!p_self->_is_registered()) { p_self->set_member(p_name, p_value); return; }
 
@@ -7842,7 +7857,7 @@ void Object::set_member_s(ptr<Object> p_self, const String& p_name, var& p_value
 	if (bind_data != nullptr) {
 		if (bind_data->get_type() == BindData::MEMBER_VAR) {
 			if (!p_self->_is_native_ref()) {
-				ptrcast<PropertyBind>(bind_data)->get(p_self) = p_value;
+				ptrcast<PropertyBind>(bind_data)->get(p_self.get()) = p_value;
 				return;
 			} else {
 				THROW_ERROR(Error::ATTRIBUTE_ERROR, String::format("cannot access a non static attribute named \"%s\" (on type %s) statically.", member_name.c_str(), class_name.c_str()));
@@ -7892,6 +7907,8 @@ const stdmap<size_t, ptr<MemberInfo>>& TypeInfo::get_member_info_list_string() {
 		_NEW_METHOD_INFO("strip",                                                                    var::STRING  ),
 		_NEW_METHOD_INFO("join",       _PARAMS("strings" ),      _TYPES(var::ARRAY),                 var::STRING  ),
 		_NEW_METHOD_INFO("replace",    _PARAMS("with", "what"),  _TYPES(var::STRING, var::STRING),   var::STRING  ),
+		_NEW_METHOD_INFO("find",       _PARAMS("what", "offset"),_TYPES(var::STRING, var::INT),      var::INT,     false, _DEFVALS(0)),
+		_NEW_METHOD_INFO("contains",   _PARAMS("what"),          _TYPES(var::STRING),                var::BOOL    ),
 	};
 	return member_info_s;
 }
@@ -7916,6 +7933,10 @@ var String::call_method(const String& p_method, const stdvec<var*>& p_args) {
 		}
 		case "join"_hash:       return join(p_args[0]->operator Array());
 		case "replace"_hash:    return replace(p_args[0]->operator const String & (), p_args[1]->operator const String & ());
+		case "find"_hash: {
+			if (p_args.size() == 1) return find(p_args[0]->operator const String & (), 0);
+			else return find(p_args[0]->operator const String & (), p_args[1]->operator int64_t());
+		}
 	}
 	// TODO: more.
 	THROW_ERROR(Error::BUG, "can't reach here.");
@@ -7980,7 +8001,6 @@ String String::operator %(const var& p_other) const {
 						if (i == _data->size() - 1)
 							THROW_ERROR(Error::VALUE_ERROR, "incomplete formated string");
 
-						// TODO: support more formatings
 						switch ((*_data)[i + 1]) {
 							case '%': {
 								ret += '%';
@@ -8053,16 +8073,16 @@ bool operator!=(const char* p_cstr, const String& p_str) {
 
 char String::operator[](int64_t p_index) const {
 	if (0 <= p_index && p_index < (int64_t)size())
-		return (*_data)[p_index];
+		return (*_data)[(size_t)p_index];
 	if ((int64_t)size() * -1 <= p_index && p_index < 0)
-		return (*_data)[size() + p_index];
+		return (*_data)[size() + (size_t)p_index];
 	THROW_ERROR(Error::INVALID_INDEX, String::format("String index %i is invalid.", p_index));
 }
 char& String::operator[](int64_t p_index) {
 	if (0 <= p_index && p_index < (int64_t)size())
-		return (*_data)[p_index];
+		return (*_data)[(size_t)p_index];
 	if ((int64_t)size() * -1 <= p_index && p_index < 0)
-		return (*_data)[size() + p_index];
+		return (*_data)[size() + (size_t)p_index];
 	THROW_ERROR(Error::INVALID_INDEX, String::format("String index %i is invalid.", p_index));
 }
 
@@ -8110,7 +8130,7 @@ int64_t String::to_int() const {
 
 String String::substr(int64_t p_start, int64_t p_end) const {
 	// TODO: inconsistance withs arr[-1]
-	return _data->substr(p_start, p_end - p_start);
+	return _data->substr((size_t)p_start, (size_t)(p_end - p_start));
 }
 bool String::endswith(const String& p_str) const {
 	if (p_str.size() > _data->size()) return false;
@@ -8133,9 +8153,25 @@ bool String::startswith(const String& p_str) const {
 
 Array String::split(const String& p_delimiter) const {
 	Array ret;
+	if (size() == 0) return ret;
+
 	size_t start = 0, end = 0;
 	if (p_delimiter == "") { // split by white space
-		THROW_BUG("TODO:"); // use isspace(c)
+		while (true) {
+			// skip all white spaces
+			while (isspace((*_data)[start])) {
+				start++;
+				if (start >= size()) return ret;
+			}
+			end = start;
+			while (end < size() && !isspace((*_data)[end])) {
+				end++;
+			}
+
+			ret.append(substr(start, end));
+			start = end;
+			if (start >= size()) return ret;
+		}
 	} else {
 		while (true) {
 			end = _data->find(p_delimiter.operator std::string(), start);
@@ -8149,6 +8185,8 @@ Array String::split(const String& p_delimiter) const {
 		}
 		return ret;
 	}
+
+	return ret;
 }
 
 String String::strip() const {
@@ -8172,7 +8210,7 @@ String String::strip() const {
 
 String String::join(const Array& p_elements) const {
 	String ret;
-	for (int i = 0; i < p_elements.size(); i++) {
+	for (int i = 0; i < (int)p_elements.size(); i++) {
 		if (i > 0) ret += *this;
 		ret += p_elements[i].operator String();
 	}
@@ -8187,6 +8225,16 @@ String String::replace(const String& p_with, const String& p_what) const {
 		n += p_what.size();
 	}
 	return ret;
+}
+
+int64_t String::find(const String& p_what, int64_t p_offset) const {
+	 std::size_t pos = _data->find(p_what.operator const std::string & (), (size_t)p_offset);
+	 if (pos == std::string::npos) return -1;
+	 return (int64_t)pos;
+}
+
+bool String::contains(const String& p_what) const {
+	return find(p_what) != -1;
 }
 
 } // namespace carbon
@@ -8471,6 +8519,16 @@ bool Path::isdir() {
 	return _Platform::path_isdir(_path);
 }
 
+Array Path::listdir() {
+	Array ret;
+	stdvec<std::string> dirs = _Platform::path_listdir(_path);
+	for (const std::string& dir : dirs) {
+		if (dir == "." || dir == "..") continue;
+		ret.push_back(newptr<Path>(dir));
+	}
+	return ret;
+}
+
 String Path::parent() {
 	const std::string& str = _path;
 	size_t found = str.find_last_of("/\\");
@@ -8694,8 +8752,12 @@ void Analyzer::analyze(ptr<Parser> p_parser) {
 
 	// class function.
 	for (size_t i = 0; i < file_node->classes.size(); i++) {
+
 		parser->parser_context.current_class = file_node->classes[i].get();
 		for (size_t j = 0; j < file_node->classes[i]->functions.size(); j++) {
+			// check magic methods arguments
+			_check_operator_methods(file_node->classes[i]->functions[j].get());
+
 			parser->parser_context.current_func = file_node->classes[i]->functions[j].get();
 			_reduce_block(file_node->classes[i]->functions[j]->body);
 		}
@@ -8923,6 +8985,32 @@ void Analyzer::_resolve_enumvalue(Parser::EnumValueNode& p_enumvalue, int* p_pos
 	p_enumvalue.is_reduced = true;
 }
 
+void Analyzer::_check_operator_methods(const Parser::FunctionNode* p_func) {
+	const String& name = p_func->name;
+	const int params = (int)p_func->args.size();
+	int required = 0;
+	if (name == GlobalStrings::copy) required = 1;
+	else if (name == GlobalStrings::to_string) required = 0;
+	else if (name == GlobalStrings::__call) return;
+	else if (name == GlobalStrings::__iter_begin) required = 0;
+	else if (name == GlobalStrings::__iter_has_next) required = 0;
+	else if (name == GlobalStrings::__iter_next) required = 0;
+	else if (name == GlobalStrings::__get_mapped) required = 0;
+	else if (name == GlobalStrings::__set_mapped) required = 1;
+	else if (name == GlobalStrings::__hash) required = 0;
+	else if (name == GlobalStrings::__add) required = 1;
+	else if (name == GlobalStrings::__sub) required = 1;
+	else if (name == GlobalStrings::__mul) required = 1;
+	else if (name == GlobalStrings::__div) required = 1;
+	else if (name == GlobalStrings::__gt) required = 1;
+	else if (name == GlobalStrings::__lt) required = 1;
+	else if (name == GlobalStrings::__eq) required = 1;
+	else return;
+
+	if (params != required)
+		throw ANALYZER_ERROR(Error::INVALID_ARG_COUNT, String::format("method \"%s\" required %i parameter(s) %i given.", name.c_str(), required, params), p_func->pos);
+}
+
 void Analyzer::_check_super_constructor_call(const Parser::BlockNode* p_block) {
 	int constructor_argc = 0;
 	int default_argc = 0;
@@ -8967,7 +9055,6 @@ void Analyzer::_check_super_constructor_call(const Parser::BlockNode* p_block) {
 void Analyzer::_check_arg_count(int p_argc, int p_default_argc, int p_args_given, Vect2i p_err_pos) {
 	if (p_argc == -1 /*va args*/) return;
 
-	// TODO: error message 
 	int required_min_argc = p_argc - p_default_argc;
 	if (required_min_argc > 0) {
 		if (p_default_argc == 0) {
@@ -9092,7 +9179,6 @@ void Analyzer::_reduce_block(ptr<Parser::BlockNode>& p_block) {
 
 					case Parser::ControlFlowNode::IF: {
 						ASSERT(cf_node->args.size() == 1);
-						// TODO: if it's evaluvated to compile time constant true/false it could be optimized/warned.
 						_reduce_expression(cf_node->args[0]);
 						_reduce_block(cf_node->body);
 						if (cf_node->body_else != nullptr) {
@@ -9104,7 +9190,6 @@ void Analyzer::_reduce_block(ptr<Parser::BlockNode>& p_block) {
 
 					case Parser::ControlFlowNode::SWITCH: {
 						ASSERT(cf_node->args.size() == 1);
-						// TODO: if it's evaluvated to compile time constant integer it could be optimized/warned.
 						_reduce_expression(cf_node->args[0]);
 
 						Parser::EnumNode* _switch_enum = nullptr;
@@ -9180,7 +9265,6 @@ void Analyzer::_reduce_block(ptr<Parser::BlockNode>& p_block) {
 						parser->parser_context.current_block = parent_block;
 
 						_reduce_block(cf_node->body);
-						// TODO: if it's evaluvated to compile time constant it could be optimized/warned.
 						if (cf_node->args[0] == nullptr && cf_node->args[1] == nullptr && cf_node->args[2] == nullptr) {
 							if (!cf_node->has_break) {
 								ANALYZER_WARNING(Warning::NON_TERMINATING_LOOP, "", cf_node->pos);
@@ -9315,7 +9399,6 @@ void Analyzer::_reduce_expression(ptr<Parser::Node>& p_expr) {
 			bool all_const = true;
 			for (int i = 0; i < (int)map->elements.size(); i++) {
 				_reduce_expression(map->elements[i].key);
-				// TODO: if key is const value and two keys are the same throw error.
 				if (map->elements[i].key->type == Parser::Node::Type::CONST_VALUE) {
 					var& key_v = ptrcast<Parser::ConstValueNode>(map->elements[i].key)->value;
 					if (!var::is_hashable(key_v.get_type())) throw ANALYZER_ERROR(Error::TYPE_ERROR, String::format("unhasnable type %s used as map key.", key_v.get_type_name().c_str()), map->pos);
@@ -9923,7 +10006,7 @@ void Analyzer::_reduce_indexing(ptr < Parser::Node>& p_expr) {
 					THROW_BUG("there isn't any contant value currently support attribute access and most probably in the future");
 				} break;
 
-					// EnumClass.prop; <-- TODO: could the prop be a method?
+				// EnumClass.prop; <-- TODO: could the prop be a method?
 				case Parser::IdentifierNode::REF_ENUM_NAME: {
 					if (base->ref_base == Parser::IdentifierNode::BASE_LOCAL) {
 						stdmap<String, Parser::EnumValueNode>::iterator it = base->_enum_node->values.find(member->name);
@@ -10442,7 +10525,6 @@ void Analyzer::_reduce_call(ptr<Parser::Node>& p_expr) {
 
 							// super.method(); // super is native
 						case Parser::ClassNode::BASE_NATIVE: {
-							// TODO: can also check types at compile time it arg is constvalue.
 							ptr<BindData> bd = NativeClasses::singleton()->find_bind_data(curr_class->base_class_name, method_name);
 							if (bd == nullptr) throw ANALYZER_ERROR(Error::ATTRIBUTE_ERROR, String::format("attribute \"%s\" isn't exists in base \"%s\".", method_name.c_str(), curr_class->base_class_name.c_str()), call->pos);
 							switch (bd->get_type()) {
@@ -11073,8 +11155,16 @@ var* Bytecode::get_static_var(const String& p_name) { _GET_OR_NULL(_static_vars,
 var Bytecode::get_constant(const String& p_name) { _GET_OR_NULL(_constants, PLACE_HOLDER_MACRO); }
 
 var Bytecode::__call(stdvec<var*>& p_args) {
-	throw "TODO:";
-	return var(); // TODO:
+	if (!is_class())
+		THROW_ERROR(Error::ATTRIBUTE_ERROR, "Bytecode module is not callable");
+
+	ptr<Instance> instance = newptr<Instance>(shared_from_this());
+	const Function* member_initializer = get_member_initializer();
+	stdvec<var*> _args;
+	if (member_initializer) VM::singleton()->call_function(member_initializer, this, instance, _args);
+	const Function* constructor = get_constructor();
+	if (constructor) VM::singleton()->call_function(constructor, this, instance, p_args);
+	return instance;
 }
 
 var Bytecode::call_method(const String& p_method_name, stdvec<var*>& p_args) {
@@ -12057,11 +12147,28 @@ Address CodeGen::_generate_expression(const Parser::Node* p_expr, Address* p_dst
 						uint32_t name = add_global_name(ptrcast<Parser::IdentifierNode>(index->member)->name);
 						Address value = _generate_expression(op->args[1].get());
 
-						_context.insert_dbg(index->member.get());
-						_context.opcodes->write_set_index(on, name, value);
+						if (var_op != var::_OP_MAX_) {
+							Address tmp = _context.add_stack_temp();
+							_context.insert_dbg(index->member.get());
+							_context.opcodes->write_get_index(on, name, tmp);
 
-						_pop_addr_if_temp(on);
-						return value;
+							_context.insert_dbg(p_expr);
+							_context.opcodes->write_operator(tmp, var_op, tmp, value);
+
+							_context.insert_dbg(index->member.get());
+							_context.opcodes->write_set_index(on, name, tmp);
+
+							_pop_addr_if_temp(on);
+							return tmp;
+
+						} else {
+
+							_context.insert_dbg(index->member.get());
+							_context.opcodes->write_set_index(on, name, value);
+
+							_pop_addr_if_temp(on);
+							return value;
+						}
 
 					} else if (op->args[0]->type == Parser::Node::Type::MAPPED_INDEX) {
 						const Parser::MappedIndexNode* mapped = static_cast<const Parser::MappedIndexNode*>(op->args[0].get());
@@ -12069,12 +12176,29 @@ Address CodeGen::_generate_expression(const Parser::Node* p_expr, Address* p_dst
 						Address key = _generate_expression(mapped->key.get());
 						Address value = _generate_expression(op->args[1].get());
 
-						_context.insert_dbg(mapped->key.get());
-						_context.opcodes->write_set_mapped(on, key, value);
+						if (var_op != var::_OP_MAX_) {
+							Address tmp = _context.add_stack_temp();
+							_context.insert_dbg(mapped->key.get());
+							_context.opcodes->write_get_mapped(on, key, tmp);
 
-						_pop_addr_if_temp(on);
-						_pop_addr_if_temp(key);
-						return value;
+							_context.insert_dbg(p_expr);
+							_context.opcodes->write_operator(tmp, var_op, tmp, value);
+
+							_context.insert_dbg(mapped->key.get());
+							_context.opcodes->write_set_mapped(on, key, tmp);
+
+							_pop_addr_if_temp(on);
+							_pop_addr_if_temp(key);
+							return tmp;
+
+						} else {
+							_context.insert_dbg(mapped->key.get());
+							_context.opcodes->write_set_mapped(on, key, value);
+
+							_pop_addr_if_temp(on);
+							_pop_addr_if_temp(key);
+							return value;
+						}
 
 					} else {
 						Address left = _generate_expression(op->args[0].get());
@@ -12228,8 +12352,8 @@ void Compiler::add_include_dir(const String& p_dir) {
 
 ptr<Bytecode> Compiler::compile_file(const String& p_path) {
 
-	// TODO: remove this
-	Logger::log(String::format("compiling: %s\n", p_path.c_str()).c_str());
+	// TODO: print only if serialize to bytecode.
+	//Logger::log(String::format("compiling: %s\n", p_path.c_str()).c_str());
 
 	class ScopeDestruct {
 	public:
@@ -12299,41 +12423,6 @@ ptr<Bytecode> Compiler::compile(const String& p_path) {
 
 namespace carbon {
 
-#define CHECK_OPCODE_SIZE(m_size) ASSERT(ip + m_size < _opcodes.size())
-#define ADD_ADDR() ret += Address(_opcodes[++ip]).as_string(_global_names_array, _global_const_values) + '\n'
-#define ADD_GLOBAL_NAME()																					\
-	do {                                                                                                    \
-		uint32_t index = _opcodes[++ip];																	\
-		if (_global_names_array) {																			\
-			THROW_INVALID_INDEX(_global_names_array->size(), index);										\
-			ret += String(std::to_string(index)) + " // \"" + (*_global_names_array)[index] + "\"\n";		\
-		} else {																							\
-			ret += std::to_string(index) +"\n";																\
-		}																									\
-	} while (false)
-
-#define ADD_ADDR_LIST()                                  \
-	do {									             \
-		uint32_t argc = _opcodes[++ip];		             \
-		ret += std::to_string(argc) + " // argc\n";		 \
-		for (int i = 0; i < (int)argc; i++) {	         \
-			ADD_ADDR();						             \
-		}									             \
-	} while (false)
-
-#define ADD_ADDR_LIST_MAP()                              \
-	do {									             \
-		uint32_t argc = _opcodes[++ip];		             \
-		ret += std::to_string(argc) + " // argc\n";		 \
-		for (int i = 0; i < (int)argc; i++) {	         \
-			ADD_ADDR();						             \
-			ADD_ADDR();						             \
-		}									             \
-	} while (false)
-
-//---------------------------------------------------------------------------------------------------
-
-
 const String& Function::get_name() const { return _name; }
 bool Function::is_static() const { return _is_static; }
 int Function::get_arg_count() const { return _arg_count; }
@@ -12348,194 +12437,6 @@ const stdmap<uint32_t, uint32_t>& Function::get_op_dbg() const { return op_dbg; 
 
 var Function::__call(stdvec<var*>& p_args) {
 	return VM::singleton()->call_function(this, _owner, nullptr, p_args);
-}
-
-String Function::get_opcodes_as_string() const {
-
-	Bytecode* _bytecode_file = nullptr;
-	if (_owner->is_class()) _bytecode_file = _owner->get_file().get();
-	else _bytecode_file = _owner;
-
-	const stdvec<String>* _global_names_array = &_bytecode_file->_global_names_array;
-	const stdvec<var>* _global_const_values = &_bytecode_file->_global_const_values;
-
-	String ret;
-	uint32_t ip = 0;
-
-	while (ip < _opcodes.size()) {
-
-		if (_opcodes[ip] > Opcode::END) std::cout << ret << std::endl;
-		ASSERT(_opcodes[ip] <= Opcode::END);
-		ret += String("---- addr:") + std::to_string(ip) + " ----\n";
-		ret += Opcodes::get_opcode_name((Opcode)_opcodes[ip]) + '\n';
-
-		switch (_opcodes[ip]) {
-			case Opcode::GET: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_GLOBAL_NAME();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::SET: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_GLOBAL_NAME();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::GET_MAPPED: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_ADDR();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::SET_MAPPED: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_ADDR();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::SET_TRUE: {
-				CHECK_OPCODE_SIZE(2);
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::SET_FALSE: {
-				CHECK_OPCODE_SIZE(2);
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::OPERATOR: {
-				uint32_t op_type = _opcodes[++ip]; ASSERT(op_type < var::_OP_MAX_);
-				ret += String(std::to_string(op_type)) + " // " + var::get_op_name_s((var::Operator)op_type) + '\n';
-				ADD_ADDR(); ADD_ADDR(); ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::ASSIGN: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CONSTRUCT_BUILTIN: {
-				CHECK_OPCODE_SIZE(4);
-				uint32_t b_type = _opcodes[++ip]; ASSERT(b_type < BuiltinTypes::_TYPE_MAX_);
-				ret += String(std::to_string(b_type)) + " // " + BuiltinTypes::get_type_name((BuiltinTypes::Type)b_type) + '\n';
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-
-			case Opcode::CONSTRUCT_NATIVE:
-			case Opcode::CONSTRUCT_CARBON: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_GLOBAL_NAME();
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-
-			case Opcode::CONSTRUCT_LITERAL_ARRAY: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CONSTRUCT_LITERAL_MAP: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR_LIST_MAP();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CALL: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CALL_FUNC: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_GLOBAL_NAME();
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CALL_METHOD: {
-				CHECK_OPCODE_SIZE(5);
-				ADD_ADDR();
-				ADD_GLOBAL_NAME();
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CALL_BUILTIN: {
-				CHECK_OPCODE_SIZE(3);
-				uint32_t func = _opcodes[++ip]; ASSERT(func < BuiltinFunctions::_FUNC_MAX_);
-				ret += String(std::to_string(func)) + " // " + BuiltinFunctions::get_func_name((BuiltinFunctions::Type)func) + '\n';
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CALL_SUPER_CTOR: {
-				CHECK_OPCODE_SIZE(2);
-				ADD_ADDR_LIST();
-				ip++;
-			} break;
-			case Opcode::CALL_SUPER_METHOD: {
-				CHECK_OPCODE_SIZE(5);
-				ADD_GLOBAL_NAME();
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::JUMP: {
-				CHECK_OPCODE_SIZE(2);
-				ret += String(std::to_string(_opcodes[++ip])) + " // addr\n";
-				ip++;
-			} break;
-			case Opcode::JUMP_IF: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR();
-				ret += String(std::to_string(_opcodes[++ip])) + " // addr\n" ;
-				ip++;
-			} break;
-			case Opcode::JUMP_IF_NOT: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR();
-				ret += String(std::to_string(_opcodes[++ip])) + " // addr\n";
-				ip++;
-			} break;
-			case Opcode::RETURN: {
-				CHECK_OPCODE_SIZE(2);
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::ITER_BEGIN: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::ITER_NEXT: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_ADDR();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::END: {
-				ip++;
-			} break;
-
-		}
-		ret += "\n";
-		MISSED_ENUM_CHECK(Opcode::END, 25);
-	}
-	return ret;
 }
 
 }
@@ -15055,7 +14956,8 @@ void Tokenizer::_eat_escape(String& p_str) {
 		case '"':  p_str += '"';  EAT_CHAR(2); break;
 		case 'r':  p_str += '\r'; EAT_CHAR(2); break;
 		case '\n': EAT_CHAR(1); EAT_LINE(); break;
-		default: p_str += c;
+		default: 
+			throw TOKENIZER_ERROR(Error::SYNTAX_ERROR, "invalid escape character");
 	}
 }
 
@@ -15265,7 +15167,7 @@ void Tokenizer::tokenize(const String& p_source, const String& p_source_path) {
 							EAT_CHAR(2);
 							break;
 						} else if (GET_CHAR(0) == 0) {
-							throw TOKENIZER_ERROR(Error::UNEXPECTED_EOF, ""); // TODO: Error message.
+							throw TOKENIZER_ERROR(Error::UNEXPECTED_EOF, "");
 						} else if (GET_CHAR(0) == '\n') {
 							EAT_LINE();
 						} else {
@@ -15400,9 +15302,7 @@ void Tokenizer::tokenize(const String& p_source, const String& p_source_path) {
 				break;
 			default: {
 				
-				// NOTE: 1.2.3 => float=1.2 float=.3 is this okey?
 				// TODO: 1.2e3 => is a valid float number
-				// TODO: hex/binary/octal numbers
 
 				// float value begins with '.'
 				if (GET_CHAR(0) == '.' && IS_NUM(GET_CHAR(1)) ) {
@@ -15432,7 +15332,7 @@ void Tokenizer::tokenize(const String& p_source, const String& p_source_path) {
 						case INT: {
 							while (IS_NUM(GET_CHAR(0)) || GET_CHAR(0) == '.') {
 								if (GET_CHAR(0) == '.' && mode == FLOAT)
-									break; // TODO: 3.1.2 <-- should be invalid here.
+									throw TOKENIZER_ERROR(Error::SYNTAX_ERROR, "invalid numeric value.");
 								if (GET_CHAR(0) == '.')
 									mode = FLOAT;
 								num += GET_CHAR(0);
@@ -15531,29 +15431,6 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 	THROW_IF_NULLPTR(p_bytecode);
 	if (__stack >= STACK_MAX) THROW_ERROR(Error::STACK_OVERFLOW, "stack was overflowed.");
 
-	p_bytecode->initialize();
-
-	VMStack stack(p_func->get_stack_size());
-	RuntimeContext context;
-	context.vm = this;
-	context.stack = &stack;
-	context.args = &p_args;
-	if (p_self != nullptr) context.self = p_self;
-	context.curr_fn = p_func;
-	for (int i = 0; i < p_func->get_is_args_ref().size(); i++) {
-		if (!p_func->get_is_args_ref()[i]) context.value_args.push_back(*(p_args[i]));
-	}
-	if (p_bytecode->is_class()) {
-		context.bytecode_class = p_bytecode;
-		context.bytecode_file = p_bytecode->get_file().get();
-	} else {
-		context.bytecode_file = p_bytecode;
-	}
-
-	uint32_t ip = 0; // instruction pointer
-
-	const stdvec<uint32_t>& opcodes = p_func->get_opcodes();
-
 	// check argc and add default args
 	stdvec<var> default_args_copy;
 	if (p_args.size() > p_func->get_arg_count()) {
@@ -15573,7 +15450,34 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 		for (var& v : default_args_copy) p_args.push_back(&v);
 	}
 
+	p_bytecode->initialize();
+
+	VMStack stack(p_func->get_stack_size());
+	RuntimeContext context;
+	context.vm = this;
+	context.stack = &stack;
+	context.args = &p_args;
+	if (p_self != nullptr) context.self = p_self;
+	context.curr_fn = p_func;
+	for (int i = 0; i < p_func->get_is_args_ref().size(); i++) {
+		if (!p_func->get_is_args_ref()[i]) {
+			context.value_args.push_back(*(p_args[i]));
+		}
+	}
+	if (p_bytecode->is_class()) {
+		context.bytecode_class = p_bytecode;
+		context.bytecode_file = p_bytecode->get_file().get();
+	} else {
+		context.bytecode_file = p_bytecode;
+	}
+
+	uint32_t ip = 0; // instruction pointer
+	const stdvec<uint32_t>& opcodes = p_func->get_opcodes();
+
 #define CHECK_OPCODE_SIZE(m_size) ASSERT(ip + m_size < opcodes.size())
+#define DISPATCH() goto L_loop
+
+	L_loop:
 	while (ip < opcodes.size()) {
 		ASSERT(opcodes[ip] <= Opcode::END);
 		uint32_t last_ip = ip;
@@ -15587,7 +15491,7 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				ip++;
 
 				*dst = on->get_member(name);
-			} break;
+			} DISPATCH();
 
 			case Opcode::SET: {
 				CHECK_OPCODE_SIZE(4);
@@ -15597,7 +15501,7 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				ip++;
 
 				on->set_member(name, *value);
-			} break;
+			} DISPATCH();
 
 			case Opcode::GET_MAPPED: {
 				CHECK_OPCODE_SIZE(4);
@@ -15607,7 +15511,7 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				ip++;
 
 				*dst = on->__get_mapped(*key);
-			} break;
+			} DISPATCH();
 
 			case Opcode::SET_MAPPED: {
 				CHECK_OPCODE_SIZE(4);
@@ -15617,7 +15521,7 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				ip++;
 
 				on->__set_mapped(*key, *value);
-			} break;
+			} DISPATCH();
 
 			case Opcode::SET_TRUE: {
 				CHECK_OPCODE_SIZE(2);
@@ -15625,7 +15529,7 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				ip++;
 
 				*dst = true;
-			} break;
+			} DISPATCH();
 
 			case Opcode::SET_FALSE: {
 				CHECK_OPCODE_SIZE(2);
@@ -15695,10 +15599,10 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				CHECK_OPCODE_SIZE(4);
 				uint32_t b_type = opcodes[++ip];
 				uint32_t argc = opcodes[++ip];
-				stdvec<var*> args;
+				stdvec<var*> args(argc);
 				for (int i = 0; i < (int)argc; i++) {
 					var* arg = context.get_var_at(opcodes[++ip]);
-					args.push_back(arg);
+					args[i] = arg;
 				}
 				var* dst = context.get_var_at(opcodes[++ip]);
 				ip++;
@@ -15711,25 +15615,25 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				CHECK_OPCODE_SIZE(4);
 				const String& class_name = context.get_name_at(opcodes[++ip]);
 				uint32_t argc = opcodes[++ip];
-				stdvec<var*> args;
+				stdvec<var*> args(argc);
 				for (int i = 0; i < (int)argc; i++) {
 					var* arg = context.get_var_at(opcodes[++ip]);
-					args.push_back(arg);
+					args[i] = arg;
 				}
 				var* dst = context.get_var_at(opcodes[++ip]);
 				ip++;
 
 				*dst = NativeClasses::singleton()->construct(class_name, args);
-			} break;
+			} DISPATCH();
 
 			case Opcode::CONSTRUCT_CARBON: {
 				CHECK_OPCODE_SIZE(4);
 				const String& name = context.get_name_at(opcodes[++ip]);
 				uint32_t argc = opcodes[++ip];
-				stdvec<var*> args;
+				stdvec<var*> args(argc);
 				for (int i = 0; i < (int)argc; i++) {
 					var* arg = context.get_var_at(opcodes[++ip]);
-					args.push_back(arg);
+					args[i] = arg;
 				}
 				var* dst = context.get_var_at(opcodes[++ip]);
 				ip++;
@@ -15750,7 +15654,7 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				if (constructor) call_function(constructor, blueprint.get(), instance, args, __stack + 1);
 
 				*dst = instance;
-			} break;
+			} DISPATCH();
 
 			case Opcode::CONSTRUCT_LITERAL_ARRAY: {
 				CHECK_OPCODE_SIZE(3);
@@ -15765,7 +15669,7 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				ip++;
 
 				*dst = arr;
-			} break;
+			} DISPATCH();
 
 			case Opcode::CONSTRUCT_LITERAL_MAP: {
 				CHECK_OPCODE_SIZE(3);
@@ -15781,32 +15685,32 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				ip++;
 
 				*dst = map;
-			} break;
+			} DISPATCH();
 
 			case Opcode::CALL: {
 				CHECK_OPCODE_SIZE(4);
 				var* on = context.get_var_at(opcodes[++ip]);
 				uint32_t argc = opcodes[++ip];
-				stdvec<var*> args;
+				stdvec<var*> args(argc);
 				for (int i = 0; i < (int)argc; i++) {
 					var* arg = context.get_var_at(opcodes[++ip]);
-					args.push_back(arg);
+					args[i] = arg;
 				}
 				var* ret_value = context.get_var_at(opcodes[++ip]);
 				ip++;
 
 				*ret_value = on->__call(args);
-			} break;
+			} DISPATCH();
 
 			case Opcode::CALL_FUNC: {
 				CHECK_OPCODE_SIZE(4);
 
 				const String& func = context.get_name_at(opcodes[++ip]);
 				uint32_t argc = opcodes[++ip];
-				stdvec<var*> args;
+				stdvec<var*> args(argc);
 				for (int i = 0; i < (int)argc; i++) {
 					var* arg = context.get_var_at(opcodes[++ip]);
-					args.push_back(arg);
+					args[i] = arg;
 				}
 				var* ret_value = context.get_var_at(opcodes[++ip]);
 				ip++;
@@ -15854,7 +15758,7 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				}
 
 
-			} break;
+			} DISPATCH();
 
 			case Opcode::CALL_METHOD: {
 				CHECK_OPCODE_SIZE(5);
@@ -15862,43 +15766,43 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				var* on = context.get_var_at(opcodes[++ip]);
 				const String& method = context.get_name_at(opcodes[++ip]);
 				uint32_t argc = opcodes[++ip];
-				stdvec<var*> args;
+				stdvec<var*> args(argc);
 				for (int i = 0; i < (int)argc; i++) {
 					var* arg = context.get_var_at(opcodes[++ip]);
-					args.push_back(arg);
+					args[i] = arg;
 				}
 				var* ret_value = context.get_var_at(opcodes[++ip]);
 				ip++;
 
 				*ret_value = on->call_method(method, args);
 
-			} break;
+			} DISPATCH();
 
 			case Opcode::CALL_BUILTIN: {
 				CHECK_OPCODE_SIZE(4);
 
 				uint32_t func = opcodes[++ip];
 				uint32_t argc = opcodes[++ip];
-				stdvec<var*> args;
+				stdvec<var*> args(argc);
 				for (int i = 0; i < (int)argc; i++) {
 					var* arg = context.get_var_at(opcodes[++ip]);
-					args.push_back(arg);
+					args[i] = arg;
 				}
 				var* ret = context.get_var_at(opcodes[++ip]);
 
 				ASSERT(func < BuiltinFunctions::_FUNC_MAX_);
 				BuiltinFunctions::call((BuiltinFunctions::Type)func, args, *ret);
 				ip++;
-			} break;
+			} DISPATCH();
 
 			case Opcode::CALL_SUPER_CTOR: {
 				CHECK_OPCODE_SIZE(2);
 				uint32_t argc = opcodes[++ip];
-				stdvec<var*> args;
+				stdvec<var*> args(argc);
 
 				for (int i = 0; i < (int)argc; i++) {
 					var* arg = context.get_var_at(opcodes[++ip]);
-					args.push_back(arg);
+					args[i] = arg;
 				}
 				ip++;
 
@@ -15917,17 +15821,17 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 					if (ctor) call_function(ctor, p_bytecode->get_base_binary().get(), p_self, args, __stack + 1);
 				}
 
-			} break;
+			} DISPATCH();
 
 			case Opcode::CALL_SUPER_METHOD: {
 				CHECK_OPCODE_SIZE(4);
 
 				const String& method = context.get_name_at(opcodes[++ip]);
 				uint32_t argc = opcodes[++ip];
-				stdvec<var*> args;
+				stdvec<var*> args(argc);
 				for (int i = 0; i < (int)argc; i++) {
 					var* arg = context.get_var_at(opcodes[++ip]);
-					args.push_back(arg);
+					args[i] = arg;
 				}
 				var* ret_value = context.get_var_at(opcodes[++ip]);
 				ip++;
@@ -15955,13 +15859,13 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 					}
 				}
 
-			} break;
+			} DISPATCH();
 
 			case Opcode::JUMP: {
 				CHECK_OPCODE_SIZE(2);
 				uint32_t addr = opcodes[++ip];
 				ip = addr;
-			} break;
+			} DISPATCH();
 
 			case Opcode::JUMP_IF: {
 				CHECK_OPCODE_SIZE(3);
@@ -15969,7 +15873,7 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				uint32_t addr = opcodes[++ip];
 				if (cond->operator bool()) ip = addr;
 				else ip++;
-			} break;
+			} DISPATCH();
 
 			case Opcode::JUMP_IF_NOT: {
 				CHECK_OPCODE_SIZE(3);
@@ -15977,13 +15881,13 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				uint32_t addr = opcodes[++ip];
 				if (!cond->operator bool()) ip = addr;
 				else ip++;
-			} break;
+			} DISPATCH();
 
 			case Opcode::RETURN: {
 				CHECK_OPCODE_SIZE(2);
 				var* val = context.get_var_at(opcodes[++ip]);
 				return *val;
-			} break;
+			} DISPATCH();
 
 			case Opcode::ITER_BEGIN: {
 				CHECK_OPCODE_SIZE(3);
@@ -15992,7 +15896,8 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 				ip++;
 
 				*iterator = on->__iter_begin();
-			} break;
+			} DISPATCH();
+
 			case Opcode::ITER_NEXT: {
 				CHECK_OPCODE_SIZE(4);
 				var* iter_value = context.get_var_at(opcodes[++ip]);
@@ -16006,10 +15911,12 @@ var VM::call_function(const Function* p_func, Bytecode* p_bytecode, ptr<Instance
 					ip = addr;
 				}
 
-			} break;
+			} DISPATCH();
+
 			case Opcode::END: {
 				return var();
-			} break;
+			} DISPATCH();
+
 			MISSED_ENUM_CHECK(Opcode::END, 25);
 
 		}} catch (Throwable& err) {
@@ -16217,6 +16124,11 @@ using namespace carbon;
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
 /*************************************************************************/
 
+// This file is heavily modified version of the Godot's crahs_handler
+// Usage:
+//   #define CARBON_INCLUDE_CRASH_HANDLER_MAIN
+//   #define CARBON_CRASH_HANDLER_IMPLEMENTATION
+//   #include "crash_handler.h"
 
 #if defined(PLATFORM_WINDOWS)
 
@@ -16727,7 +16639,7 @@ void CrashHandler::initialize() {
 inline void log_copyright_and_license() {
 	Logger::log(1 + R"(
 Carbon 1.0.0 (https://github.com/ThakeeNathees/carbon/)
-Copyright (c) 2020 ThakeeNathees.
+Copyright (c) 2020-2021 ThakeeNathees.
 Free and open source software under the terms of the MIT license.
 
 )");
@@ -16735,6 +16647,7 @@ Free and open source software under the terms of the MIT license.
 
 inline void log_help() {
 	Logger::log(1 + R"(
+TODO: THESE HELP TEXT ARE DUMMY
 usage: carbon [options] file ...
 Options:
     -h, --help          : Display this help message.
@@ -16748,10 +16661,11 @@ Options:
 int _main(int argc, char** argv) {
 
 	carbon_initialize();
-	log_copyright_and_license();
+	//log_copyright_and_license();
 
 	try {
 		if (argc < 2) {
+			log_copyright_and_license();
 			log_help();
 		} else {
 			// TODO: properly parse command line args
@@ -16783,6 +16697,9 @@ int _main(int argc, char** argv) {
 #endif
 #include <Windows.h>
 #undef ERROR
+#include <tchar.h> 
+#include <stdio.h>
+#include <strsafe.h>
 
 #include <direct.h>
 
@@ -16904,6 +16821,56 @@ bool _Platform::path_isdir(const std::string& p_path) {
 	else return false;									// this is not a directory!
 }
 
+stdvec<std::string> _Platform::path_listdir(const std::string& p_path) {
+	// reference: https://docs.microsoft.com/en-us/windows/win32/fileio/listing-the-files-in-a-directory
+	WIN32_FIND_DATA ffd;
+	//LARGE_INTEGER filesize;
+	TCHAR szDir[MAX_PATH];
+	size_t path_len;
+	HANDLE hFind = INVALID_HANDLE_VALUE;
+	DWORD dwError = 0;
+
+	StringCchLength(p_path.c_str(), MAX_PATH, &path_len);
+	if (path_len > (MAX_PATH - 3)) {
+		THROW_ERROR(Error::IO_ERROR, String::format("Directory path is too long (%s)", p_path.c_str()));
+	}
+
+	// Prepare string for use with FindFile functions.  First, copy the
+   // string to a buffer, then append '\*' to the directory name.
+
+	StringCchCopy(szDir, MAX_PATH, p_path.c_str());
+	StringCchCat(szDir, MAX_PATH, TEXT("\\*"));
+
+	// Find the first file in the directory.
+
+	hFind = FindFirstFile(szDir, &ffd);
+
+	if (INVALID_HANDLE_VALUE == hFind) {
+		THROW_ERROR(Error::IO_ERROR, "Invalid handle");
+	}
+
+	stdvec<std::string> ret;
+
+	do {
+		//if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+		//	_tprintf(TEXT("  %s   <DIR>\n"), ffd.cFileName);
+		//} else {
+		//	filesize.LowPart = ffd.nFileSizeLow;
+		//	filesize.HighPart = ffd.nFileSizeHigh;
+		//	_tprintf(TEXT("  %s   %ld bytes\n"), ffd.cFileName, filesize.QuadPart);
+		//}
+		ret.push_back(ffd.cFileName);
+	} while (FindNextFile(hFind, &ffd) != 0);
+
+	dwError = GetLastError();
+	if (dwError != ERROR_NO_MORE_FILES) {
+		THROW_ERROR(Error::IO_ERROR, "Invalid handle");
+	}
+	FindClose(hFind);
+
+	return ret;
+}
+
 }
 
 #endif // PLATFORM_WINDOWS
@@ -16911,6 +16878,30 @@ bool _Platform::path_isdir(const std::string& p_path) {
 #endif //_FILE_SRC_CORE_PLATFORM_WINDOWS_CPP_
 
 #ifndef _FILE_SRC_CORE_PLATFORM_X11_CPP_
+//------------------------------------------------------------------------------
+// MIT License
+//------------------------------------------------------------------------------
+// 
+// Copyright (c) 2020 Thakee Nathees
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//------------------------------------------------------------------------------
 
 
 #ifdef PLATFORM_LINUX
