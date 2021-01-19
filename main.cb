@@ -13,17 +13,18 @@ func main() {
 		return 1;
 	}
 	
-	var color = Color(1, .1, .6, 1);
-
+	var color = Color(70.0/255, 70.0/255, 70.0/255, 1);
+	var string = "";
 
 	while (!window.ShouldClose()) {
 		window.PollEvents();
 		
 		window.NewFrame();
 		/* ------------------------------------------ */
-		//ui.DockSpace(ui.DockNodeFlags.AutoHideTabBar);
+		ui.DockSpace(ui.DockNodeFlags.AutoHideTabBar);
 		
-		ui.Begin("TextEdit", false /*ui.WindowFlags.NoTitleBar*/);
+		ui.Begin("TextEdit", false ,ui.WindowFlags.NoTitleBar);
+		ui.InputText("enter text", string);
 		ui.ColorEdit3("clear color", color);
 		editor.Render();
 		ui.End();

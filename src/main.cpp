@@ -24,7 +24,7 @@ void test_main() {
 	TextEditor editor;
 	text_edit_init(editor);
 
-	var color = newptr<Color>(1, .1, .6, 1);
+	var color = newptr<Color>(1.0, .1, .6, 1.0);
 	while (!window.ShouldClose()) {
 		window.PollEvents();
 		
@@ -150,6 +150,7 @@ void text_edit_init(TextEditor& editor) {
 
 
 void text_edit_draw(TextEditor& editor) {
+
 	auto cpos = editor.GetCursorPosition();
 	ImGui::Begin("Text Editor Demo", nullptr, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_MenuBar);
 	ImGui::SetWindowSize(ImVec2(800, 600), ImGuiCond_FirstUseEver);

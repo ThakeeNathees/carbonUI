@@ -2,7 +2,7 @@
 // MIT License
 //------------------------------------------------------------------------------
 // 
-// Copyright (c) 2020 Thakee Nathees
+// Copyright (c) 2020-2021 Thakee Nathees
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -34,59 +34,11 @@
 // use crash handler main and define _main(int argc, char** argv) for the
 // entry point
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef CARBON_H
 #define CARBON_H
 
 // core imports
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef CORE_INTERNAL_H
 #define CORE_INTERNAL_H
@@ -289,87 +241,15 @@ namespace carbon {
 
 #endif // CORE_INTERNAL_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef _ERRORS_H
 #define _ERRORS_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef LOGGER_H
 #define LOGGER_H
 
 #include <stdarg.h> // for va_list
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef CONSOLE_H
 #define CONSOLE_H
@@ -646,30 +526,6 @@ private:
 
 //#include "core/logger.h"
 //#include "core/console.h"
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 //#include "internal.h"
 //#include "console.h"
@@ -694,94 +550,23 @@ public:
 	static std::string path_absolute(const std::string& p_path);
 	static bool path_exists(const std::string& p_path);
 	static bool path_isdir(const std::string& p_path);
+	static stdvec<std::string> path_listdir(const std::string& p_path);
 };
 
 }
 
 #endif //_PLATFORM_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef _TYPE_INFO_H
 #define _TYPE_INFO_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef _VAR_H
 #define _VAR_H
 
 //#include "core/_error.h"
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef STRING_H
 #define STRING_H
@@ -829,6 +614,7 @@ public:
 	String join(const Array& p_elements) const;
 	String replace(const String& p_with, const String& p_what) const;
 	int64_t find(const String& p_what, int64_t p_offset = 0) const;
+	bool contains(const String& p_what) const;
 
 	// operators.
 	char operator[](int64_t p_index) const;
@@ -891,30 +677,6 @@ bool operator!=(const char* p_cstr, const String& p_str);
 
 #endif // STRING_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef  ARRAY_H
 #define  ARRAY_H
@@ -962,6 +724,7 @@ public:
 	Array& sort();
 	var& back();
 	var& front();
+	bool contains(const var& p_elem);
 
 	String to_string() const;
 	operator bool() const;
@@ -989,30 +752,6 @@ private:
 
 #endif // ARRAY_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef  MAP_H
 #define  MAP_H
@@ -1075,30 +814,6 @@ private:
 
 #endif // MAP_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef OBJECT_H
 #define OBJECT_H
@@ -1210,30 +925,6 @@ private:
 
 #endif //OBJECT_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef VECTOR_H
 #define VECTOR_H
@@ -1987,60 +1678,12 @@ public:
 
 #endif // _TYPE_INFO_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef NATIVE_CLASSES_H
 #define NATIVE_CLASSES_H
 
 //#include "var/var.h"
 //#include "type_info.h"
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 // !!! AUTO GENERATED DO NOT EDIT !!!
 
@@ -2202,7 +1845,7 @@ public:
 	}
 
 	virtual var& get(Object* self) const override {
-		return ptrcast<Class>(self).get()->*member_ptr;
+		return ((Class*)(self))->*member_ptr;
 	}
 };
 
@@ -3755,30 +3398,6 @@ public:
 
 
 // var imports
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef VAR_PRIVATE_H
 #define VAR_PRIVATE_H
@@ -3798,16 +3417,16 @@ static void _check_method_and_args(const String& p_method, const stdvec<var*>& p
 		int arg_count = mp->get_arg_count();
 		int default_arg_count = mp->get_default_arg_count();
 		if (arg_count != -1) {
-			if (p_args.size() + default_arg_count < arg_count) { /* Args not enough. */
+			if ((int)p_args.size() + default_arg_count < arg_count) { /* Args not enough. */
 				if (default_arg_count == 0) THROW_ERROR(Error::INVALID_ARG_COUNT, String::format("expected at exactly %i argument(s).", arg_count));
 				else THROW_ERROR(Error::INVALID_ARG_COUNT, String::format("expected at least %i argument(s).", arg_count - default_arg_count));
-			} else if (p_args.size() > arg_count) { /* More args proveded.    */
+			} else if ((int)p_args.size() > arg_count) { /* More args proveded.    */
 				if (default_arg_count == 0) THROW_ERROR(Error::INVALID_ARG_COUNT, String::format("expected at exactly %i argument(s).", arg_count));
 				else THROW_ERROR(Error::INVALID_ARG_COUNT, String::format(
 					"expected minimum of %i argument(s) and maximum of %i argument(s).", arg_count - default_arg_count, arg_count));
 			}
 		}
-		for (int j = 0; j < mp->get_arg_types().size(); j++) {
+		for (int j = 0; j < (int)mp->get_arg_types().size(); j++) {
 			if (mp->get_arg_types()[j] == VarTypeInfo(var::VAR)) continue; /* can't be _NULL. */
 			if (p_args.size() == j) break; /* rest are default args. */
 			if (mp->get_arg_types()[j] != VarTypeInfo(p_args[j]->get_type(), p_args[j]->get_type_name().c_str()))
@@ -3830,30 +3449,6 @@ static void _check_method_and_args(const String& p_method, const stdvec<var*>& p
 //#include "var/var.h"
 
 // native imports
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef _RUNTIME_TYPES_H
 #define _RUNTIME_TYPES_H
@@ -3975,59 +3570,11 @@ public:
 
 #endif // _RUNTIME_TYPES_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef FILE_H
 #define FILE_H
 
 //#include "core/native.h"
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef BUFFER_H
 #define BUFFER_H
@@ -4145,30 +3692,6 @@ private:
 #endif // FILE_H
 
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef	PATH_H
 #define	PATH_H
@@ -4193,6 +3716,7 @@ class Path : public Object {
 		BIND_METHOD("extension",  &Path::extension);
 		BIND_METHOD("exists",     &Path::exists);
 		BIND_METHOD("isdir",      &Path::isdir);
+		BIND_METHOD("listdir",    &Path::listdir);
 
 	}
 
@@ -4206,6 +3730,7 @@ public:
 	String extension();
 	bool exists();
 	bool isdir();
+	Array listdir();
 
 	ptr<Path> join(const String& p_path) const;
 	ptr<Path> operator /(const Path& p_other) const;
@@ -4225,30 +3750,6 @@ private:
 
 #endif // PATH_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef OS_H
 #define OS_H
@@ -4295,60 +3796,12 @@ public:
 
 
 // compilation pipeline
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef TOKENIZER_H
 #define TOKENIZER_H
 
 //#include "var/var.h"
 //#include "native/file.h"
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef BUILTIN_H
 #define BUILTIN_H
@@ -4659,30 +4112,6 @@ private:
 
 #endif // TOKENIZER_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef PARSER_H
 #define PARSER_H
@@ -4690,60 +4119,12 @@ private:
 //#include "var/var.h"
 //#include "core/logger.h"
 //#include "tokenizer.h"
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef BYTECODE_H
 #define BYTECODE_H
 
 //#include "var/var.h"
 //#include "core/type_info.h"
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef OPCODES_H
 #define OPCODES_H
@@ -4911,7 +4292,7 @@ struct Opcodes {
 
 namespace carbon {
 
-class Bytecode : public Object {
+class Bytecode : public Object, public std::enable_shared_from_this<Bytecode> {
 	REGISTER_CLASS(Bytecode, Object) {}
 
 	friend class CodeGen;
@@ -4934,8 +4315,8 @@ private: // members.
 	stdmap<String, ptr<Bytecode>> _externs;  // imported for FileNode
 
 	stdmap<String, uint32_t> _members;       // member index. offset willbe added for inherited instances.
-	stdmap<String, var> _static_vars;        // TODO : change to stdvec<String> since var is stored _member_vars
-	stdmap<String, var> _constants;			 // TODO : same as above
+	stdmap<String, var> _static_vars;
+	stdmap<String, var> _constants;
 	stdmap<String, int64_t> _unnamed_enums;
 	stdmap<String, ptr<EnumInfo>> _enums;
 	stdmap<String, ptr<Function>> _functions;
@@ -5599,60 +4980,12 @@ private:
 }
 #endif // PARSER_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef ANALYZER_H
 #define ANALYZER_H
 
 //#include "var/var.h"
 //#include "parser.h"
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef GLOBALS_H
 #define GLOBALS_H
@@ -5750,30 +5083,6 @@ private:
 
 #endif // ANALYZER_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef CODEGEN_H
 #define CODEGEN_H
@@ -5782,30 +5091,6 @@ private:
 //#include "globals.h"
 //#include "analyzer.h"
 //#include "bytecode.h"
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef _FUNCTION_H
 #define _FUNCTION_H
@@ -5844,7 +5129,6 @@ public:
 	
 	const stdvec<uint32_t>& get_opcodes() const;
 	const stdmap<uint32_t, uint32_t>& get_op_dbg() const;
-	String get_opcodes_as_string() const;
 
 	var __call(stdvec<var*>& p_args) override;
 };
@@ -5912,30 +5196,6 @@ private:
 
 #endif // CODEGEN_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef VM_H
 #define VM_H
@@ -5944,30 +5204,6 @@ private:
 //#include "builtin.h"
 //#include "bytecode.h"
 //#include "function.h"
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef INSTANCE_H
 #define INSTANCE_H
@@ -6103,30 +5339,6 @@ private:
 
 #endif // VM_H
 
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef COMPILER_H
 #define COMPILER_H
@@ -6210,30 +5422,6 @@ inline void carbon_cleanup() {
 
 
 #ifndef _FILE_SRC_CORE_CONSOLE_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -6282,30 +5470,6 @@ void Console::log(const char* p_message, bool p_stderr, Console::Color p_forgrou
 #endif //_FILE_SRC_CORE_CONSOLE_CPP_
 
 #ifndef _FILE_SRC_CORE_LOGGER_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -6401,30 +5565,6 @@ void Logger::_logf(const char* p_fmt, va_list p_args, bool p_err, Console::Color
 #endif //_FILE_SRC_CORE_LOGGER_CPP_
 
 #ifndef _FILE_SRC_CORE_NATIVE_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -6617,30 +5757,6 @@ var PropertyInfo::__call(stdvec<var*>& p_args) {
 #endif //_FILE_SRC_CORE_NATIVE_CPP_
 
 #ifndef _FILE_SRC_CORE_TYPE_INFO_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -6732,30 +5848,6 @@ const ptr<MemberInfo> TypeInfo::get_member_info_map(const String& p_member) {
 #endif //_FILE_SRC_CORE_TYPE_INFO_CPP_
 
 #ifndef _FILE_SRC_CORE__ERROR_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -6924,30 +6016,6 @@ std::string DBGSourceInfo::get_pos_str() const {
 #endif //_FILE_SRC_CORE__ERROR_CPP_
 
 #ifndef _FILE_SRC_VAR_VAR_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -8290,30 +7358,6 @@ String var::get_type_name() const {
 #endif //_FILE_SRC_VAR_VAR_CPP_
 
 #ifndef _FILE_SRC_VAR__ARRAY_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 
@@ -8331,6 +7375,7 @@ const stdmap<size_t, ptr<MemberInfo>>& TypeInfo::get_member_info_list_array() {
 		_NEW_METHOD_INFO("resize",       _PARAMS("size" ),    _TYPES(var::INT),     var::_NULL ),
 		_NEW_METHOD_INFO("reserve",      _PARAMS("size" ),    _TYPES(var::INT),     var::_NULL ),
 		_NEW_METHOD_INFO("sort",                                                    var::ARRAY ),
+		_NEW_METHOD_INFO("contains",    _PARAMS("element"),   _TYPES(var::VAR),     var::BOOL  ),
 	};
 	return member_info_s;
 }
@@ -8347,9 +7392,10 @@ var Array::call_method(const String& p_method, const stdvec<var*>& p_args) {
 		case "clear"_hash: { clear(); return var(); }
 		case "insert"_hash: { insert(*p_args[0], *p_args[1]); return var(); }
 		case "at"_hash:        return at(p_args[0]->operator int64_t());
-		case "resize"_hash: { resize(p_args[0]->operator int64_t()); return var(); }
-		case "reserve"_hash: { reserve(p_args[0]->operator int64_t()); return var(); }
+		case "resize"_hash: { resize((size_t)p_args[0]->operator int64_t()); return var(); }
+		case "reserve"_hash: { reserve((size_t)p_args[0]->operator int64_t()); return var(); }
 		case "sort"_hash: { return sort(); }
+		case "contains"_hash: { return contains(p_args[0]); }
 	}
 	// TODO: add more.
 	DEBUG_BREAK(); THROW_ERROR(Error::BUG, "can't reach here.");
@@ -8372,33 +7418,40 @@ void   Array::push_back(const var& p_var) { _data->push_back(p_var); }
 void   Array::pop_back() { _data->pop_back(); }
 Array& Array::append(const var& p_var) { push_back(p_var); return *this; }
 void   Array::clear() { (*_data).clear(); }
-void   Array::insert(int64_t p_index, const var& p_var) { _data->insert(_data->begin() + p_index, p_var); }
+void   Array::insert(int64_t p_index, const var& p_var) { _data->insert(_data->begin() + (int)p_index, p_var); }
 void   Array::resize(size_t p_size) { _data->resize(p_size); }
 void   Array::reserve(size_t p_size) { _data->reserve(p_size); }
 Array& Array::sort() { std::sort(_data->begin(), _data->end()); return *this; }
 var&   Array::back() { return (*_data).back(); }
 var&   Array::front() { return (*_data).front(); }
 
+bool Array::contains(const var& p_elem) {
+	for (const var& e : (*_data)) {
+		if (e == p_elem) return true;
+	}
+	return false;
+}
+
 var& Array::at(int64_t p_index) {
 	if (0 <= p_index && p_index < (int64_t)size())
-		return (*_data).at(p_index);
+		return (*_data).at((size_t)p_index);
 	if ((int64_t)size() * -1 <= p_index && p_index < 0)
-		return (*_data).at(size() + p_index);
+		return (*_data).at(size() + (size_t)p_index);
 	THROW_ERROR(Error::INVALID_INDEX, String::format("Array index %i is invalid.", p_index));
 }
 
 var& Array::operator[](int64_t p_index) const {
 	if (0 <= p_index && p_index < (int64_t)size())
-		return _data->operator[](p_index);
+		return _data->operator[]((size_t)p_index);
 	if ((int64_t)size() * -1 <= p_index && p_index < 0)
-		return _data->operator[](size() + p_index);
+		return _data->operator[](size() + (size_t)p_index);
 	THROW_ERROR(Error::INVALID_INDEX, String::format("Array index %i is invalid.", p_index));
 }
 var& Array::operator[](int64_t p_index) {
 	if (0 <= p_index && p_index < (int64_t)size())
-		return _data->operator[](p_index);
+		return _data->operator[]((size_t)p_index);
 	if ((int64_t)size() * -1 <= p_index && p_index < 0)
-		return _data->operator[](size() + p_index);
+		return _data->operator[](size() + (size_t)p_index);
 	THROW_ERROR(Error::INVALID_INDEX, String::format("Array index %i is invalid.", p_index));
 }
 
@@ -8469,30 +7522,6 @@ Array& Array::operator=(const Array& p_other) {
 #endif //_FILE_SRC_VAR__ARRAY_CPP_
 
 #ifndef _FILE_SRC_VAR__MAP_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 
@@ -8655,30 +7684,6 @@ Map& Map::operator=(const Map& p_other) {
 #endif //_FILE_SRC_VAR__MAP_CPP_
 
 #ifndef _FILE_SRC_VAR__OBJECT_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -8881,30 +7886,6 @@ void Object::set_member_s(ptr<Object>& p_self, const String& p_name, var& p_valu
 #endif //_FILE_SRC_VAR__OBJECT_CPP_
 
 #ifndef _FILE_SRC_VAR__STRING_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 
@@ -8927,6 +7908,7 @@ const stdmap<size_t, ptr<MemberInfo>>& TypeInfo::get_member_info_list_string() {
 		_NEW_METHOD_INFO("join",       _PARAMS("strings" ),      _TYPES(var::ARRAY),                 var::STRING  ),
 		_NEW_METHOD_INFO("replace",    _PARAMS("with", "what"),  _TYPES(var::STRING, var::STRING),   var::STRING  ),
 		_NEW_METHOD_INFO("find",       _PARAMS("what", "offset"),_TYPES(var::STRING, var::INT),      var::INT,     false, _DEFVALS(0)),
+		_NEW_METHOD_INFO("contains",   _PARAMS("what"),          _TYPES(var::STRING),                var::BOOL    ),
 	};
 	return member_info_s;
 }
@@ -9019,7 +8001,6 @@ String String::operator %(const var& p_other) const {
 						if (i == _data->size() - 1)
 							THROW_ERROR(Error::VALUE_ERROR, "incomplete formated string");
 
-						// TODO: support more formatings
 						switch ((*_data)[i + 1]) {
 							case '%': {
 								ret += '%';
@@ -9092,16 +8073,16 @@ bool operator!=(const char* p_cstr, const String& p_str) {
 
 char String::operator[](int64_t p_index) const {
 	if (0 <= p_index && p_index < (int64_t)size())
-		return (*_data)[p_index];
+		return (*_data)[(size_t)p_index];
 	if ((int64_t)size() * -1 <= p_index && p_index < 0)
-		return (*_data)[size() + p_index];
+		return (*_data)[size() + (size_t)p_index];
 	THROW_ERROR(Error::INVALID_INDEX, String::format("String index %i is invalid.", p_index));
 }
 char& String::operator[](int64_t p_index) {
 	if (0 <= p_index && p_index < (int64_t)size())
-		return (*_data)[p_index];
+		return (*_data)[(size_t)p_index];
 	if ((int64_t)size() * -1 <= p_index && p_index < 0)
-		return (*_data)[size() + p_index];
+		return (*_data)[size() + (size_t)p_index];
 	THROW_ERROR(Error::INVALID_INDEX, String::format("String index %i is invalid.", p_index));
 }
 
@@ -9149,7 +8130,7 @@ int64_t String::to_int() const {
 
 String String::substr(int64_t p_start, int64_t p_end) const {
 	// TODO: inconsistance withs arr[-1]
-	return _data->substr(p_start, p_end - p_start);
+	return _data->substr((size_t)p_start, (size_t)(p_end - p_start));
 }
 bool String::endswith(const String& p_str) const {
 	if (p_str.size() > _data->size()) return false;
@@ -9172,9 +8153,25 @@ bool String::startswith(const String& p_str) const {
 
 Array String::split(const String& p_delimiter) const {
 	Array ret;
+	if (size() == 0) return ret;
+
 	size_t start = 0, end = 0;
 	if (p_delimiter == "") { // split by white space
-		THROW_BUG("TODO:"); // use isspace(c)
+		while (true) {
+			// skip all white spaces
+			while (isspace((*_data)[start])) {
+				start++;
+				if (start >= size()) return ret;
+			}
+			end = start;
+			while (end < size() && !isspace((*_data)[end])) {
+				end++;
+			}
+
+			ret.append(substr(start, end));
+			start = end;
+			if (start >= size()) return ret;
+		}
 	} else {
 		while (true) {
 			end = _data->find(p_delimiter.operator std::string(), start);
@@ -9188,6 +8185,8 @@ Array String::split(const String& p_delimiter) const {
 		}
 		return ret;
 	}
+
+	return ret;
 }
 
 String String::strip() const {
@@ -9211,7 +8210,7 @@ String String::strip() const {
 
 String String::join(const Array& p_elements) const {
 	String ret;
-	for (int i = 0; i < p_elements.size(); i++) {
+	for (int i = 0; i < (int)p_elements.size(); i++) {
 		if (i > 0) ret += *this;
 		ret += p_elements[i].operator String();
 	}
@@ -9229,9 +8228,13 @@ String String::replace(const String& p_with, const String& p_what) const {
 }
 
 int64_t String::find(const String& p_what, int64_t p_offset) const {
-	 std::size_t pos = _data->find(p_what.operator const std::string & (), p_offset);
+	 std::size_t pos = _data->find(p_what.operator const std::string & (), (size_t)p_offset);
 	 if (pos == std::string::npos) return -1;
 	 return (int64_t)pos;
+}
+
+bool String::contains(const String& p_what) const {
+	return find(p_what) != -1;
 }
 
 } // namespace carbon
@@ -9239,30 +8242,6 @@ int64_t String::find(const String& p_what, int64_t p_offset) const {
 #endif //_FILE_SRC_VAR__STRING_CPP_
 
 #ifndef _FILE_SRC_NATIVE_BUFFER_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 
@@ -9317,30 +8296,6 @@ void Buffer::__set_mapped(const var& p_key, const var& p_value) {
 #endif //_FILE_SRC_NATIVE_BUFFER_CPP_
 
 #ifndef _FILE_SRC_NATIVE_FILE_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 
@@ -9515,30 +8470,6 @@ var File::__iter_begin() {
 #endif //_FILE_SRC_NATIVE_FILE_CPP_
 
 #ifndef _FILE_SRC_NATIVE_OS_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -9565,30 +8496,6 @@ void OS::chdir(const String& p_path) {
 #endif //_FILE_SRC_NATIVE_OS_CPP_
 
 #ifndef _FILE_SRC_NATIVE_PATH_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 
@@ -9610,6 +8517,16 @@ bool Path::exists() {
 
 bool Path::isdir() {
 	return _Platform::path_isdir(_path);
+}
+
+Array Path::listdir() {
+	Array ret;
+	stdvec<std::string> dirs = _Platform::path_listdir(_path);
+	for (const std::string& dir : dirs) {
+		if (dir == "." || dir == "..") continue;
+		ret.push_back(newptr<Path>(dir));
+	}
+	return ret;
 }
 
 String Path::parent() {
@@ -9670,30 +8587,6 @@ Path::operator const String& () const {
 #endif //_FILE_SRC_NATIVE_PATH_CPP_
 
 #ifndef _FILE_SRC_COMPILER_ANALYZER_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 /******************************************************************************************************************/
@@ -10112,6 +9005,7 @@ void Analyzer::_check_operator_methods(const Parser::FunctionNode* p_func) {
 	else if (name == GlobalStrings::__gt) required = 1;
 	else if (name == GlobalStrings::__lt) required = 1;
 	else if (name == GlobalStrings::__eq) required = 1;
+	else return;
 
 	if (params != required)
 		throw ANALYZER_ERROR(Error::INVALID_ARG_COUNT, String::format("method \"%s\" required %i parameter(s) %i given.", name.c_str(), required, params), p_func->pos);
@@ -10161,7 +9055,6 @@ void Analyzer::_check_super_constructor_call(const Parser::BlockNode* p_block) {
 void Analyzer::_check_arg_count(int p_argc, int p_default_argc, int p_args_given, Vect2i p_err_pos) {
 	if (p_argc == -1 /*va args*/) return;
 
-	// TODO: error message 
 	int required_min_argc = p_argc - p_default_argc;
 	if (required_min_argc > 0) {
 		if (p_default_argc == 0) {
@@ -10286,7 +9179,6 @@ void Analyzer::_reduce_block(ptr<Parser::BlockNode>& p_block) {
 
 					case Parser::ControlFlowNode::IF: {
 						ASSERT(cf_node->args.size() == 1);
-						// TODO: if it's evaluvated to compile time constant true/false it could be optimized/warned.
 						_reduce_expression(cf_node->args[0]);
 						_reduce_block(cf_node->body);
 						if (cf_node->body_else != nullptr) {
@@ -10298,7 +9190,6 @@ void Analyzer::_reduce_block(ptr<Parser::BlockNode>& p_block) {
 
 					case Parser::ControlFlowNode::SWITCH: {
 						ASSERT(cf_node->args.size() == 1);
-						// TODO: if it's evaluvated to compile time constant integer it could be optimized/warned.
 						_reduce_expression(cf_node->args[0]);
 
 						Parser::EnumNode* _switch_enum = nullptr;
@@ -10374,7 +9265,6 @@ void Analyzer::_reduce_block(ptr<Parser::BlockNode>& p_block) {
 						parser->parser_context.current_block = parent_block;
 
 						_reduce_block(cf_node->body);
-						// TODO: if it's evaluvated to compile time constant it could be optimized/warned.
 						if (cf_node->args[0] == nullptr && cf_node->args[1] == nullptr && cf_node->args[2] == nullptr) {
 							if (!cf_node->has_break) {
 								ANALYZER_WARNING(Warning::NON_TERMINATING_LOOP, "", cf_node->pos);
@@ -10509,7 +9399,6 @@ void Analyzer::_reduce_expression(ptr<Parser::Node>& p_expr) {
 			bool all_const = true;
 			for (int i = 0; i < (int)map->elements.size(); i++) {
 				_reduce_expression(map->elements[i].key);
-				// TODO: if key is const value and two keys are the same throw error.
 				if (map->elements[i].key->type == Parser::Node::Type::CONST_VALUE) {
 					var& key_v = ptrcast<Parser::ConstValueNode>(map->elements[i].key)->value;
 					if (!var::is_hashable(key_v.get_type())) throw ANALYZER_ERROR(Error::TYPE_ERROR, String::format("unhasnable type %s used as map key.", key_v.get_type_name().c_str()), map->pos);
@@ -11117,7 +10006,7 @@ void Analyzer::_reduce_indexing(ptr < Parser::Node>& p_expr) {
 					THROW_BUG("there isn't any contant value currently support attribute access and most probably in the future");
 				} break;
 
-					// EnumClass.prop; <-- TODO: could the prop be a method?
+				// EnumClass.prop; <-- TODO: could the prop be a method?
 				case Parser::IdentifierNode::REF_ENUM_NAME: {
 					if (base->ref_base == Parser::IdentifierNode::BASE_LOCAL) {
 						stdmap<String, Parser::EnumValueNode>::iterator it = base->_enum_node->values.find(member->name);
@@ -11636,7 +10525,6 @@ void Analyzer::_reduce_call(ptr<Parser::Node>& p_expr) {
 
 							// super.method(); // super is native
 						case Parser::ClassNode::BASE_NATIVE: {
-							// TODO: can also check types at compile time it arg is constvalue.
 							ptr<BindData> bd = NativeClasses::singleton()->find_bind_data(curr_class->base_class_name, method_name);
 							if (bd == nullptr) throw ANALYZER_ERROR(Error::ATTRIBUTE_ERROR, String::format("attribute \"%s\" isn't exists in base \"%s\".", method_name.c_str(), curr_class->base_class_name.c_str()), call->pos);
 							switch (bd->get_type()) {
@@ -11886,30 +10774,6 @@ void Analyzer::_reduce_call(ptr<Parser::Node>& p_expr) {
 #endif //_FILE_SRC_COMPILER_ANALYZER_CPP_
 
 #ifndef _FILE_SRC_COMPILER_BUILTIN_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 /******************************************************************************************************************/
@@ -12231,30 +11095,6 @@ String BuiltinTypeRef::to_string() {
 #endif //_FILE_SRC_COMPILER_BUILTIN_CPP_
 
 #ifndef _FILE_SRC_COMPILER_BYTECODE_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 
@@ -12315,8 +11155,16 @@ var* Bytecode::get_static_var(const String& p_name) { _GET_OR_NULL(_static_vars,
 var Bytecode::get_constant(const String& p_name) { _GET_OR_NULL(_constants, PLACE_HOLDER_MACRO); }
 
 var Bytecode::__call(stdvec<var*>& p_args) {
-	throw "TODO:";
-	return var(); // TODO:
+	if (!is_class())
+		THROW_ERROR(Error::ATTRIBUTE_ERROR, "Bytecode module is not callable");
+
+	ptr<Instance> instance = newptr<Instance>(shared_from_this());
+	const Function* member_initializer = get_member_initializer();
+	stdvec<var*> _args;
+	if (member_initializer) VM::singleton()->call_function(member_initializer, this, instance, _args);
+	const Function* constructor = get_constructor();
+	if (constructor) VM::singleton()->call_function(constructor, this, instance, p_args);
+	return instance;
 }
 
 var Bytecode::call_method(const String& p_method_name, stdvec<var*>& p_args) {
@@ -12566,30 +11414,6 @@ uint32_t Bytecode::_global_const_value_get(const var& p_value) {
 #endif //_FILE_SRC_COMPILER_BYTECODE_CPP_
 
 #ifndef _FILE_SRC_COMPILER_CODEGEN_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 /******************************************************************************************************************/
@@ -13323,11 +12147,28 @@ Address CodeGen::_generate_expression(const Parser::Node* p_expr, Address* p_dst
 						uint32_t name = add_global_name(ptrcast<Parser::IdentifierNode>(index->member)->name);
 						Address value = _generate_expression(op->args[1].get());
 
-						_context.insert_dbg(index->member.get());
-						_context.opcodes->write_set_index(on, name, value);
+						if (var_op != var::_OP_MAX_) {
+							Address tmp = _context.add_stack_temp();
+							_context.insert_dbg(index->member.get());
+							_context.opcodes->write_get_index(on, name, tmp);
 
-						_pop_addr_if_temp(on);
-						return value;
+							_context.insert_dbg(p_expr);
+							_context.opcodes->write_operator(tmp, var_op, tmp, value);
+
+							_context.insert_dbg(index->member.get());
+							_context.opcodes->write_set_index(on, name, tmp);
+
+							_pop_addr_if_temp(on);
+							return tmp;
+
+						} else {
+
+							_context.insert_dbg(index->member.get());
+							_context.opcodes->write_set_index(on, name, value);
+
+							_pop_addr_if_temp(on);
+							return value;
+						}
 
 					} else if (op->args[0]->type == Parser::Node::Type::MAPPED_INDEX) {
 						const Parser::MappedIndexNode* mapped = static_cast<const Parser::MappedIndexNode*>(op->args[0].get());
@@ -13335,12 +12176,29 @@ Address CodeGen::_generate_expression(const Parser::Node* p_expr, Address* p_dst
 						Address key = _generate_expression(mapped->key.get());
 						Address value = _generate_expression(op->args[1].get());
 
-						_context.insert_dbg(mapped->key.get());
-						_context.opcodes->write_set_mapped(on, key, value);
+						if (var_op != var::_OP_MAX_) {
+							Address tmp = _context.add_stack_temp();
+							_context.insert_dbg(mapped->key.get());
+							_context.opcodes->write_get_mapped(on, key, tmp);
 
-						_pop_addr_if_temp(on);
-						_pop_addr_if_temp(key);
-						return value;
+							_context.insert_dbg(p_expr);
+							_context.opcodes->write_operator(tmp, var_op, tmp, value);
+
+							_context.insert_dbg(mapped->key.get());
+							_context.opcodes->write_set_mapped(on, key, tmp);
+
+							_pop_addr_if_temp(on);
+							_pop_addr_if_temp(key);
+							return tmp;
+
+						} else {
+							_context.insert_dbg(mapped->key.get());
+							_context.opcodes->write_set_mapped(on, key, value);
+
+							_pop_addr_if_temp(on);
+							_pop_addr_if_temp(key);
+							return value;
+						}
 
 					} else {
 						Address left = _generate_expression(op->args[0].get());
@@ -13468,30 +12326,6 @@ Address CodeGen::_generate_expression(const Parser::Node* p_expr, Address* p_dst
 #endif //_FILE_SRC_COMPILER_CODEGEN_CPP_
 
 #ifndef _FILE_SRC_COMPILER_COMPILER_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 
@@ -13585,68 +12419,9 @@ ptr<Bytecode> Compiler::compile(const String& p_path) {
 #endif //_FILE_SRC_COMPILER_COMPILER_CPP_
 
 #ifndef _FILE_SRC_COMPILER_FUNCTION_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
-
-#define CHECK_OPCODE_SIZE(m_size) ASSERT(ip + m_size < _opcodes.size())
-#define ADD_ADDR() ret += Address(_opcodes[++ip]).as_string(_global_names_array, _global_const_values) + '\n'
-#define ADD_GLOBAL_NAME()																					\
-	do {                                                                                                    \
-		uint32_t index = _opcodes[++ip];																	\
-		if (_global_names_array) {																			\
-			THROW_INVALID_INDEX(_global_names_array->size(), index);										\
-			ret += String(std::to_string(index)) + " // \"" + (*_global_names_array)[index] + "\"\n";		\
-		} else {																							\
-			ret += std::to_string(index) +"\n";																\
-		}																									\
-	} while (false)
-
-#define ADD_ADDR_LIST()                                  \
-	do {									             \
-		uint32_t argc = _opcodes[++ip];		             \
-		ret += std::to_string(argc) + " // argc\n";		 \
-		for (int i = 0; i < (int)argc; i++) {	         \
-			ADD_ADDR();						             \
-		}									             \
-	} while (false)
-
-#define ADD_ADDR_LIST_MAP()                              \
-	do {									             \
-		uint32_t argc = _opcodes[++ip];		             \
-		ret += std::to_string(argc) + " // argc\n";		 \
-		for (int i = 0; i < (int)argc; i++) {	         \
-			ADD_ADDR();						             \
-			ADD_ADDR();						             \
-		}									             \
-	} while (false)
-
-//---------------------------------------------------------------------------------------------------
-
 
 const String& Function::get_name() const { return _name; }
 bool Function::is_static() const { return _is_static; }
@@ -13664,223 +12439,11 @@ var Function::__call(stdvec<var*>& p_args) {
 	return VM::singleton()->call_function(this, _owner, nullptr, p_args);
 }
 
-String Function::get_opcodes_as_string() const {
-
-	Bytecode* _bytecode_file = nullptr;
-	if (_owner->is_class()) _bytecode_file = _owner->get_file().get();
-	else _bytecode_file = _owner;
-
-	const stdvec<String>* _global_names_array = &_bytecode_file->_global_names_array;
-	const stdvec<var>* _global_const_values = &_bytecode_file->_global_const_values;
-
-	String ret;
-	uint32_t ip = 0;
-
-	while (ip < _opcodes.size()) {
-
-		if (_opcodes[ip] > Opcode::END) std::cout << ret << std::endl;
-		ASSERT(_opcodes[ip] <= Opcode::END);
-		ret += String("---- addr:") + std::to_string(ip) + " ----\n";
-		ret += Opcodes::get_opcode_name((Opcode)_opcodes[ip]) + '\n';
-
-		switch (_opcodes[ip]) {
-			case Opcode::GET: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_GLOBAL_NAME();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::SET: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_GLOBAL_NAME();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::GET_MAPPED: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_ADDR();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::SET_MAPPED: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_ADDR();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::SET_TRUE: {
-				CHECK_OPCODE_SIZE(2);
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::SET_FALSE: {
-				CHECK_OPCODE_SIZE(2);
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::OPERATOR: {
-				uint32_t op_type = _opcodes[++ip]; ASSERT(op_type < var::_OP_MAX_);
-				ret += String(std::to_string(op_type)) + " // " + var::get_op_name_s((var::Operator)op_type) + '\n';
-				ADD_ADDR(); ADD_ADDR(); ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::ASSIGN: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CONSTRUCT_BUILTIN: {
-				CHECK_OPCODE_SIZE(4);
-				uint32_t b_type = _opcodes[++ip]; ASSERT(b_type < BuiltinTypes::_TYPE_MAX_);
-				ret += String(std::to_string(b_type)) + " // " + BuiltinTypes::get_type_name((BuiltinTypes::Type)b_type) + '\n';
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-
-			case Opcode::CONSTRUCT_NATIVE:
-			case Opcode::CONSTRUCT_CARBON: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_GLOBAL_NAME();
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-
-			case Opcode::CONSTRUCT_LITERAL_ARRAY: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CONSTRUCT_LITERAL_MAP: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR_LIST_MAP();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CALL: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CALL_FUNC: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_GLOBAL_NAME();
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CALL_METHOD: {
-				CHECK_OPCODE_SIZE(5);
-				ADD_ADDR();
-				ADD_GLOBAL_NAME();
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CALL_BUILTIN: {
-				CHECK_OPCODE_SIZE(3);
-				uint32_t func = _opcodes[++ip]; ASSERT(func < BuiltinFunctions::_FUNC_MAX_);
-				ret += String(std::to_string(func)) + " // " + BuiltinFunctions::get_func_name((BuiltinFunctions::Type)func) + '\n';
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::CALL_SUPER_CTOR: {
-				CHECK_OPCODE_SIZE(2);
-				ADD_ADDR_LIST();
-				ip++;
-			} break;
-			case Opcode::CALL_SUPER_METHOD: {
-				CHECK_OPCODE_SIZE(5);
-				ADD_GLOBAL_NAME();
-				ADD_ADDR_LIST();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::JUMP: {
-				CHECK_OPCODE_SIZE(2);
-				ret += String(std::to_string(_opcodes[++ip])) + " // addr\n";
-				ip++;
-			} break;
-			case Opcode::JUMP_IF: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR();
-				ret += String(std::to_string(_opcodes[++ip])) + " // addr\n" ;
-				ip++;
-			} break;
-			case Opcode::JUMP_IF_NOT: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR();
-				ret += String(std::to_string(_opcodes[++ip])) + " // addr\n";
-				ip++;
-			} break;
-			case Opcode::RETURN: {
-				CHECK_OPCODE_SIZE(2);
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::ITER_BEGIN: {
-				CHECK_OPCODE_SIZE(3);
-				ADD_ADDR();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::ITER_NEXT: {
-				CHECK_OPCODE_SIZE(4);
-				ADD_ADDR();
-				ADD_ADDR();
-				ADD_ADDR();
-				ip++;
-			} break;
-			case Opcode::END: {
-				ip++;
-			} break;
-
-		}
-		ret += "\n";
-		MISSED_ENUM_CHECK(Opcode::END, 25);
-	}
-	return ret;
-}
-
 }
 
 #endif //_FILE_SRC_COMPILER_FUNCTION_CPP_
 
 #ifndef _FILE_SRC_COMPILER_INSTANCE_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -14039,30 +12602,6 @@ CALL_OPERATOR(var, __div);
 #endif //_FILE_SRC_COMPILER_INSTANCE_CPP_
 
 #ifndef _FILE_SRC_COMPILER_OPCODES_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -14519,30 +13058,6 @@ void Opcodes::write_operator(const Address& p_dst, var::Operator p_op, const Add
 #endif //_FILE_SRC_COMPILER_OPCODES_CPP_
 
 #ifndef _FILE_SRC_COMPILER_PARSER_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 
@@ -16365,30 +14880,6 @@ MISSED_ENUM_CHECK(BuiltinTypes::Type::_TYPE_MAX_, 9);
 #endif //_FILE_SRC_COMPILER_PARSER_CPP_
 
 #ifndef _FILE_SRC_COMPILER_TOKENIZER_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -16465,7 +14956,8 @@ void Tokenizer::_eat_escape(String& p_str) {
 		case '"':  p_str += '"';  EAT_CHAR(2); break;
 		case 'r':  p_str += '\r'; EAT_CHAR(2); break;
 		case '\n': EAT_CHAR(1); EAT_LINE(); break;
-		default: p_str += c;
+		default: 
+			throw TOKENIZER_ERROR(Error::SYNTAX_ERROR, "invalid escape character");
 	}
 }
 
@@ -16675,7 +15167,7 @@ void Tokenizer::tokenize(const String& p_source, const String& p_source_path) {
 							EAT_CHAR(2);
 							break;
 						} else if (GET_CHAR(0) == 0) {
-							throw TOKENIZER_ERROR(Error::UNEXPECTED_EOF, ""); // TODO: Error message.
+							throw TOKENIZER_ERROR(Error::UNEXPECTED_EOF, "");
 						} else if (GET_CHAR(0) == '\n') {
 							EAT_LINE();
 						} else {
@@ -16810,9 +15302,7 @@ void Tokenizer::tokenize(const String& p_source, const String& p_source_path) {
 				break;
 			default: {
 				
-				// NOTE: 1.2.3 => float=1.2 float=.3 is this okey?
 				// TODO: 1.2e3 => is a valid float number
-				// TODO: hex/binary/octal numbers
 
 				// float value begins with '.'
 				if (GET_CHAR(0) == '.' && IS_NUM(GET_CHAR(1)) ) {
@@ -16842,7 +15332,7 @@ void Tokenizer::tokenize(const String& p_source, const String& p_source_path) {
 						case INT: {
 							while (IS_NUM(GET_CHAR(0)) || GET_CHAR(0) == '.') {
 								if (GET_CHAR(0) == '.' && mode == FLOAT)
-									break; // TODO: 3.1.2 <-- should be invalid here.
+									throw TOKENIZER_ERROR(Error::SYNTAX_ERROR, "invalid numeric value.");
 								if (GET_CHAR(0) == '.')
 									mode = FLOAT;
 								num += GET_CHAR(0);
@@ -16907,30 +15397,6 @@ void Tokenizer::tokenize(const String& p_source, const String& p_source_path) {
 #endif //_FILE_SRC_COMPILER_TOKENIZER_CPP_
 
 #ifndef _FILE_SRC_COMPILER_VM_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 namespace carbon {
@@ -17622,30 +16088,6 @@ var* VM::_get_builtin_type_ref(uint32_t p_type) {
 #endif //_FILE_SRC_COMPILER_VM_CPP_
 
 #ifndef _FILE_SRC_MAIN_MAIN_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 #ifndef CARBON_NO_MAIN
 
@@ -17682,6 +16124,11 @@ using namespace carbon;
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
 /*************************************************************************/
 
+// This file is heavily modified version of the Godot's crahs_handler
+// Usage:
+//   #define CARBON_INCLUDE_CRASH_HANDLER_MAIN
+//   #define CARBON_CRASH_HANDLER_IMPLEMENTATION
+//   #include "crash_handler.h"
 
 #if defined(PLATFORM_WINDOWS)
 
@@ -18241,30 +16688,6 @@ int _main(int argc, char** argv) {
 #endif //_FILE_SRC_MAIN_MAIN_CPP_
 
 #ifndef _FILE_SRC_CORE_PLATFORM_WINDOWS_CPP_
-//------------------------------------------------------------------------------
-// MIT License
-//------------------------------------------------------------------------------
-// 
-// Copyright (c) 2020-2021 Thakee Nathees
-// 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//------------------------------------------------------------------------------
 
 
 #ifdef PLATFORM_WINDOWS
@@ -18274,6 +16697,9 @@ int _main(int argc, char** argv) {
 #endif
 #include <Windows.h>
 #undef ERROR
+#include <tchar.h> 
+#include <stdio.h>
+#include <strsafe.h>
 
 #include <direct.h>
 
@@ -18395,6 +16821,56 @@ bool _Platform::path_isdir(const std::string& p_path) {
 	else return false;									// this is not a directory!
 }
 
+stdvec<std::string> _Platform::path_listdir(const std::string& p_path) {
+	// reference: https://docs.microsoft.com/en-us/windows/win32/fileio/listing-the-files-in-a-directory
+	WIN32_FIND_DATA ffd;
+	//LARGE_INTEGER filesize;
+	TCHAR szDir[MAX_PATH];
+	size_t path_len;
+	HANDLE hFind = INVALID_HANDLE_VALUE;
+	DWORD dwError = 0;
+
+	StringCchLength(p_path.c_str(), MAX_PATH, &path_len);
+	if (path_len > (MAX_PATH - 3)) {
+		THROW_ERROR(Error::IO_ERROR, String::format("Directory path is too long (%s)", p_path.c_str()));
+	}
+
+	// Prepare string for use with FindFile functions.  First, copy the
+   // string to a buffer, then append '\*' to the directory name.
+
+	StringCchCopy(szDir, MAX_PATH, p_path.c_str());
+	StringCchCat(szDir, MAX_PATH, TEXT("\\*"));
+
+	// Find the first file in the directory.
+
+	hFind = FindFirstFile(szDir, &ffd);
+
+	if (INVALID_HANDLE_VALUE == hFind) {
+		THROW_ERROR(Error::IO_ERROR, "Invalid handle");
+	}
+
+	stdvec<std::string> ret;
+
+	do {
+		//if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+		//	_tprintf(TEXT("  %s   <DIR>\n"), ffd.cFileName);
+		//} else {
+		//	filesize.LowPart = ffd.nFileSizeLow;
+		//	filesize.HighPart = ffd.nFileSizeHigh;
+		//	_tprintf(TEXT("  %s   %ld bytes\n"), ffd.cFileName, filesize.QuadPart);
+		//}
+		ret.push_back(ffd.cFileName);
+	} while (FindNextFile(hFind, &ffd) != 0);
+
+	dwError = GetLastError();
+	if (dwError != ERROR_NO_MORE_FILES) {
+		THROW_ERROR(Error::IO_ERROR, "Invalid handle");
+	}
+	FindClose(hFind);
+
+	return ret;
+}
+
 }
 
 #endif // PLATFORM_WINDOWS
@@ -18402,6 +16878,30 @@ bool _Platform::path_isdir(const std::string& p_path) {
 #endif //_FILE_SRC_CORE_PLATFORM_WINDOWS_CPP_
 
 #ifndef _FILE_SRC_CORE_PLATFORM_X11_CPP_
+//------------------------------------------------------------------------------
+// MIT License
+//------------------------------------------------------------------------------
+// 
+// Copyright (c) 2020 Thakee Nathees
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//------------------------------------------------------------------------------
 
 
 #ifdef PLATFORM_LINUX
