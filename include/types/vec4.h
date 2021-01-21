@@ -26,6 +26,10 @@ public:
 	inline float b() { return _data.Value.z; }
 	inline float a() { return _data.Value.w; }
 
+	String to_string() override {
+		return String::format("Color(%f, %f, %f, %f)", r(), g(), b(), a());
+	}
+
 	ImColor _data;
 };
 

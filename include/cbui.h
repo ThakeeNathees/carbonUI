@@ -17,15 +17,19 @@ using namespace carbon;
 
 #define UI_REGISTER_EXTRA 																				      \
 	BIND_STATIC_FUNC("DockSpace", &imgui_dockspace, PARAMS("flags"), DEFVALUES(ImGuiDockNodeFlags_None));     \
-	BIND_STATIC_FUNC("Window", &ui::newWindow, PARAMS("title", "size"), DEFVALUES(newptr<Vec2i>(1280, 720))); \
+	/*BIND_STATIC_FUNC("Window", &ui::newWindow, PARAMS("title", "size"), DEFVALUES(newptr<Vec2i>(1280, 720))); */\
 	BIND_STATIC_FUNC("TextEditor", &ui::newTextEditor);														  \
+	BIND_STATIC_FUNC("GetWindow", &ui::GetWindow);															  \
+	BIND_STATIC_FUNC("ReloadScript", &ui::ReloadScript);													  \
+	BIND_STATIC_FUNC("SetConsoleVisible", &ui::SetConsoleVisible, PARAMS("visible"));						  \
+	BIND_STATIC_FUNC("IsConsoleVisible", &ui::IsConsoleVisible);						  					  \
 	/* */																								      \
 	BIND_STATIC_FUNC("InputText", &ui::InputText, PARAMS("label", "buffer", "flags", DEFVALUES(0)));		  \
 
 #define UI_METHODS_EXTRA                                                                                      \
-	static ptr<uiWindow> newWindow(const String& title, ptr<Vec2i> size = newptr<Vec2i>(1280, 720)) {	      \
-		return newptr<uiWindow>(title, size);                                                                 \
-	}																									      \
+	/*static ptr<uiWindow> newWindow(const String& title, ptr<Vec2i> size = newptr<Vec2i>(1280, 720)) {	    */\
+	/*	return newptr<uiWindow>(title, size);                                                               */\
+	/*}																									    */\
 	static ptr<uiTextEditor> newTextEditor() {															      \
 		return newptr<uiTextEditor>();                                                       			      \
 	}																									      \
@@ -37,6 +41,17 @@ using namespace carbon;
 		}																									  \
 		return ImGui::InputText(label.c_str(), (char*)buff.get_data(), buff.size(), flags);					  \
 	}																									      \
+	static ptr<uiWindow> _window;	 /* single window instance */											  \
+	static ptr<uiWindow> GetWindow() { return _window; }													  \
+																											  \
+	static void (*_ReloadScriptFn)(); /* script reload function pointer*/									  \
+	static void ReloadScript() { _ReloadScriptFn(); }														  \
+																											  \
+	static void (*_SetConsoleVisible)(bool);																  \
+	static void SetConsoleVisible(bool p_visible) { _SetConsoleVisible(p_visible); }						  \
+																											  \
+	static bool (*_IsConsoleVisible)();																		  \
+	static bool IsConsoleVisible() { return _IsConsoleVisible(); }											  \
 
 
 #include "ui.gen.h"
@@ -53,5 +68,4 @@ inline void register_ui() {
 	NativeClasses::singleton()->register_class<ui>();
 	NativeClasses::singleton()->register_class<uiWindow>();
 	NativeClasses::singleton()->register_class<uiTextEditor>();
-
 }

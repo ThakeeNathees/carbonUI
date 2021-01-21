@@ -1,52 +1,104 @@
 
-#include "carbonUI.h"
+#include "cbui.h"
 
 #ifdef APIENTRY
-#undef APIENTRY
+	#undef APIENTRY
 #endif
+
 #define INCLUDE_CRASH_HANDLER_MAIN
 #define CRASH_HANDLER_IMPLEMENTATION
 #include "crash_handler.h"
 
-void text_edit_init(TextEditor& editor);
-void text_edit_draw(TextEditor& editor);
+// Or should use a config file?
+#define ENTRY_SCRIPT "main.cb"
+#define LOOP_FN "process"
+#define INIT_FN "init"
 
-void test_main() {
-	uiWindow window = uiWindow("new window");
+ptr<uiWindow> ui::_window = nullptr;
+void (*ui::_ReloadScriptFn)();
+void (*ui::_SetConsoleVisible)(bool);
+bool (*ui::_IsConsoleVisible)();
 
-	if (window.Initialize() != 0) {
-		printf("initialize doesn't returned 0");
-		DEBUG_BREAK();
-		exit(1);
+void set_console_visible(bool visible) {
+#ifdef PLATFORM_WINDOWS
+	if (visible) {
+		ShowWindow(GetConsoleWindow(), SW_SHOW);
+	} else {
+		ShowWindow(GetConsoleWindow(), SW_HIDE);
+	}
+#else
+	// TODO: also for is visible()
+#endif
+}
+
+bool is_console_visible() {
+#ifdef PLATFORM_WINDOWS
+	return IsWindowVisible(GetConsoleWindow()) != FALSE;
+#endif
+	return true;
+}
+
+void reload_script() {
+	ui::_window->_reload = true;
+}
+
+inline int compile_script() {
+	try {
+		ui::_window->_script = Compiler::singleton()->compile(ENTRY_SCRIPT, false);
+		ui::_window->_fn = ui::_window->_script->get_function(LOOP_FN);
+		ui::_window->_init = ui::_window->_script->get_function(INIT_FN);
+	} catch (Throwable& err) {
+		set_console_visible(true);
+		err.console_log();
+		return 1;
+	}
+	return 0;
+}
+
+int mainloop() {
+	// call initialize() function in script for title, etc.
+	ui::_window = newptr<uiWindow>("Window Title");
+	ui::_ReloadScriptFn = &reload_script;
+	ui::_SetConsoleVisible = &set_console_visible;
+	ui::_IsConsoleVisible = &is_console_visible;
+
+	if (ui::_window->Initialize() != 0) {
+		set_console_visible(true);
+		fprintf(stderr, "initialize doesn't returned 0");
+		return 1;
 	}
 	
+	if (compile_script() != 0) return 1;
 
-	TextEditor editor;
-	text_edit_init(editor);
+	stdvec<var*> args;
+	if (ui::_window->_init != nullptr) { // script initialization
+		VM::singleton()->call_function(ui::_window->_init.get(), ui::_window->_script.get(), nullptr, args);
+	}
 
-	var color = newptr<Color>(1.0, .1, .6, 1.0);
-	while (!window.ShouldClose()) {
-		window.PollEvents();
+	while (!ui::_window->ShouldClose()) {
+		ui::_window->PollEvents();
 		
-		window.NewFrame();
-		//imgui_dockspace();
+		ui::_window->NewFrame();
 		/* ------------------------------------------ */
-		ImGui::ShowDemoWindow();
-		//bool isp = ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_End));
-		//if (isp) printf("true");;
-		//ui::Begin("tes-ting", nullptr, 0);
-		//ui::ColorEdit3("clear color", color, 0);
-		//ui::End();
-		text_edit_draw(editor);
+		try {
+			VM::singleton()->call_function(ui::_window->_fn.get(), ui::_window->_script.get(), nullptr, args);
+			if (ui::_window->_reload) {
+				compile_script();
+				ui::_window->_reload = false;
+			}
+		} catch (Throwable& err) {
+			set_console_visible(true);
+			err.console_log();
+			return 1;
+		}
 		
 		/* ------------------------------------------ */
-		window.Clear(color);
-		window.DrawFrame();
-		window.SwapBuffer();
+		ui::_window->DrawFrame();
+		ui::_window->SwapBuffer();
 	}
 		
-	window.Cleanup();
-	return;
+	ui::_window->Cleanup();
+	return 0;
 }
 
 int _main(int argc, char** argv) {
@@ -54,27 +106,16 @@ int _main(int argc, char** argv) {
 	carbon_initialize();
 	register_ui();
 
-#if !defined(TEST_MAIN)
-	ptr<Bytecode> bytecode;
-	stdvec<String> args;
-	try {
-		bytecode = Compiler::singleton()->compile("main.cb");
-		VM::singleton()->run(bytecode, args);
-	} catch (Throwable& err) {
-		err.console_log();
-		return -1;
-	}
-#else
-	test_main();
-#endif
+	int exit_code = mainloop();
 
 	carbon_cleanup();
 
-	return 0;
-
+	return exit_code;
 }
 
 // tmp //////////////////////
+//void text_edit_init(TextEditor& editor);
+//void text_edit_draw(TextEditor& editor);
 void text_edit_init(TextEditor& editor) {
 	auto lang = TextEditor::LanguageDefinition::CPlusPlus();
 	

@@ -4,7 +4,7 @@ from gen.gen import generate
 
 ###### USER DATA #############################################################################
 def USER_DATA(env):
-	env.PROJECT_NAME = "CarbonUI"
+	env.PROJECT_NAME = "cb-imgui"
 
 	generate('gen/', 'include/ui.gen.h', 'src/ui.gen.cpp')
 
@@ -23,18 +23,13 @@ def USER_DATA(env):
 
 	if env['platform'] == 'windows':
 		env.Append(LIBS=['gdi32.lib', 'shell32.lib'])
-		env.Append(LIBS=['psapi', 'dbghelp']) ## for crash handler
 	elif env['platform'] == 'linux':
-		## glfw dependencies
-		env.Append(LIBS=['GL', 'X11'])
+		env.Append(LIBS=['GL'])
 	elif env['platform'] == 'osx':
 		env.Append(LIBS=['GL'])
 
 
 #################################################################################################
-
-## Gets the standard flags CC, CCX, etc.
-env = DefaultEnvironment()
 
 opts = Variables([], ARGUMENTS)
 ## Define our options
@@ -49,24 +44,34 @@ opts.Add(BoolVariable('verbose', "use verbose build command", False))
 
 opts.Add(BoolVariable('libs', "include unit tests in main", False))
 
-## Updates the environment with the option variables.
+_target_arch = 'x86_64'
+if 'bits' in opts.args.keys() and opts.args['bits'] == '32':
+	_target_arch = 'x86'
+
+## Gets the standard flags CC, CCX, etc.
+env = DefaultEnvironment(
+	TARGET_ARCH = _target_arch
+)
 ## Setup the Environment
 if 'use_llvm' in opts.args.keys() and opts.args['use_llvm']:
 	env['CC'] = 'clang'
 	env['CXX'] = 'clang++'
+
 elif 'use_mingw' in opts.args.keys() and opts.args['use_mingw']:
-	env = Environment(tools = ['mingw'], ENV = {'PATH' : os.environ['PATH']})
+	env = Environment(
+		TARGET_ARCH = _target_arch,
+		tools = ['mingw'], ENV = {'PATH' : os.environ['PATH']}
+	)
 	env['tools'] = ['mingw']
 else:
-	## Gets the standard flags CC, CCX, etc.
-	env = DefaultEnvironment()
 	if sys.platform == 'win32':
 		## scons can't find "cl.exe"
 		os.environ['PATH'] = env['ENV']['PATH']
 
+
 ## Updates the environment with the option variables.
 opts.Update(env)
-		
+
 ## find platform
 if env['platform'] == 'linux':
 	env['platform'] = 'x11'
@@ -81,11 +86,6 @@ if env['platform'] == '':
 	else:
 		print("platform(%s) not supported." % sys.platform)
 		quit()
-
-## Process some arguments
-if env['use_llvm']:
-	env['CC'] = 'clang'
-	env['CXX'] = 'clang++'
 
 ## For the reference:
 ## - CCFLAGS are compilation flags shared between C and C++
@@ -118,24 +118,21 @@ elif env['platform'] == "windows":
 	## that way you can run scons in a vs 2017 prompt and it will find all the required tools
 	env.Append(ENV=os.environ)
 
-	## MSVC
-	if env['CC'] == 'cl':
-		env.Append(CXXFLAGS=['/bigobj'])
-		env.Append(CPPDEFINES=['_CRT_SECURE_NO_WARNINGS'])
-		env.Append(CCFLAGS=['-W3', '-GR', '/FS'])
-		env.Append(LINKFLAGS=['-SUBSYSTEM:CONSOLE'])
-		if env['target'] == 'debug':
-			env.Append(CPPDEFINES=['_DEBUG'])
-			env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
-			env.Append(LINKFLAGS=['-DEBUG'])
-		else:
-			env.Append(CPPDEFINES=['NDEBUG'])
-			env.Append(CCFLAGS=['-O2', '-EHsc', '-MD'])
+	env.Append(CXXFLAGS=['/std:c++17', '/bigobj'])
+	env.Append(CPPDEFINES=['_CRT_SECURE_NO_WARNINGS'])
+	env.Append(CPPDEFINES=['WIN32', '_WIN32', '_WINDOWS'])
+	env.Append(CCFLAGS=['-W3', '-GR'])
+	env.Append(LINKFLAGS='-SUBSYSTEM:CONSOLE')
+	env.Append(LIBS=[])
 
-	## MINGW
-	if env['CC'] == 'gcc':
-		pass
-
+	if env['target'] == 'debug':
+		env.Append(CPPDEFINES=['DEBUG'])
+		env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
+		env.Append(LINKFLAGS=['-DEBUG'])
+	else:
+		env.Append(CPPDEFINES=['NDEBUG'])
+		env.Append(CCFLAGS=['-O2', '-EHsc', '-MD'])
+	env.Append(LIBS=['psapi', 'dbghelp']) ## for crash handler
 
 ## --------------------------------------------------------------------------------
 

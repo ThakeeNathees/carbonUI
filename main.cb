@@ -1,42 +1,32 @@
 
-func main() {
+var color = Color(70.0/255, 70.0/255, 70.0/255, 1);
+var string = "";
+var text = "test";
+var value = 0.0;
 
-	var window = ui.Window("new window");
-	var editor = ui.TextEditor();
+func process() {
+	//ui.DockSpace(ui.DockNodeFlags.AutoHideTabBar);
 	
-	var file = File("main.cb");
-	editor.SetText(file.read());
-	file.close();
-
-	if (window.Initialize() != 0) {
-		println("initialize doesn't returned 0");
-		return 1;
+	ui.Begin("TextEdit", false ,ui.WindowFlags.NoTitleBar);
+	if (ui.Button("reload")) {
+		ui.ReloadScript();
+		OS.system("cls");
+	}
+	ui.SameLine();
+	
+	if (ui.Button("test")) {
+		var f = File("main.cb");
+		text = f.read();
+		f.close();
 	}
 	
-	var color = Color(70.0/255, 70.0/255, 70.0/255, 1);
-	var string = "";
-
-	while (!window.ShouldClose()) {
-		window.PollEvents();
-		
-		window.NewFrame();
-		/* ------------------------------------------ */
-		ui.DockSpace(ui.DockNodeFlags.AutoHideTabBar);
-		
-		ui.Begin("TextEdit", false ,ui.WindowFlags.NoTitleBar);
-		ui.InputText("enter text", string);
-		ui.ColorEdit3("clear color", color);
-		editor.Render();
-		ui.End();
-		
-		
-		/* ------------------------------------------ */
-		window.Clear(color);
-		window.DrawFrame();
-		window.SwapBuffer();
-	}
-		
-	window.Cleanup();
-	return 0;
+	ui.InputText("enter text", string);
+	ui.ColorEdit3("clear color", color);
 	
+	ui.Text(text);
+	
+	ui.End();
+
+	ui.GetWindow().Clear(color);
 }
+

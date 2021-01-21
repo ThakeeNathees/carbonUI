@@ -41,6 +41,12 @@ private:
 	String title = "Carbon UI";
 	GLFWwindow* _window = nullptr;
 
+
+public: // should make setter and getter, but why not for this tiny application
+	bool _reload = false;
+	ptr<Bytecode> _script = nullptr;
+	ptr<Function> _fn = nullptr;
+	ptr<Function> _init = nullptr;
 };
 
 class uiTextEditor : public Object {
